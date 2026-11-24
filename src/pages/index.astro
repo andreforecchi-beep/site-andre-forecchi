@@ -6,12 +6,14 @@ import Video from '../components/Video.astro';
 import { numeros } from '../data/artista';
 import { obras } from '../data/obras';
 
-const destaques = obras.filter((o) => o.destaque);
+// Ordem dos destaques: o homem-banda vem primeiro (foco do site, pedido de André em 23/11/2026).
+const ordemDestaques = ['homem-banda-um-manifesto', 'mphb', 'homem-banda-a-formacao', 'capixaba-eu', 'nos-de-nos-dois', 'aumbandan'];
+const destaques = ordemDestaques.map((s) => obras.find((o) => o.slug === s)!).filter(Boolean);
 
 const eixos = [
+  { href: '/homem-banda', titulo: 'Homem-Banda', texto: 'O corpo como orquestra: a linguagem central da pesquisa.' },
   { href: '/artista', titulo: 'O Artista', texto: 'Quem é André Forecchi e os princípios que atravessam o trabalho.' },
   { href: '/trajetoria', titulo: 'Trajetória', texto: 'Seis anos de estrada na Kombi Djanira pela América Latina.' },
-  { href: '/homem-banda', titulo: 'Homem-Banda', texto: 'O corpo como orquestra: a linguagem central da pesquisa.' },
   { href: '/teatro', titulo: 'Teatro', texto: 'Espetáculos de rua e teatro documental.' },
   { href: '/audiovisual', titulo: 'Audiovisual', texto: 'Documentários e webséries.' },
   { href: '/cine-bandolero', titulo: 'Cine Bandolero', texto: 'Cineclube itinerante desde 2017.' },
@@ -25,12 +27,43 @@ const eixos = [
     <div class="capa__texto container">
       <h1 class="sr-only">André Forecchi</h1>
       <Logo largura="min(640px, 86vw)" />
-      <p class="capa__linha">Artista multidisciplinar · Espírito Santo</p>
+      <p class="capa__linha">Homem-banda · Artista multidisciplinar · Espírito Santo</p>
       <ul class="etiquetas etiquetas--cheias capa__tags">
         <li>Homem-banda</li><li>Teatro</li><li>Audiovisual</li><li>Cineclube</li><li>Produção cultural</li>
       </ul>
     </div>
     <img class="capa__plateia" src="/img/marca/plateia.webp" alt="" width="1600" height="379" />
+  </section>
+
+  <!-- Homem-banda: foco do site -->
+  <section class="secao secao--preto">
+    <div class="container duas-colunas">
+      <div>
+        <span class="rotulo">Eixo central da pesquisa</span>
+        <h2 class="titulo-secao"><span class="pilula pilula--ouro">Homem-Banda</span></h2>
+        <p class="lead">
+          Saxofone, bumbo, caixa, hi-hat, pratos, tamborins e voz, tocados ao mesmo tempo por cordas, roldanas e engenhocas, sem
+          tecnologia.
+        </p>
+        <p>
+          A pesquisa começou de forma autodidata, em 2020, durante a vida na estrada, e passou por cinco meses de estudo com
+          Santiago Moreno, em Nancy, na França. Hoje vira show, espetáculo, oficina e a primeira formação em homem e mulher-banda do mundo.
+        </p>
+        <div class="botoes">
+          <a class="botao botao--contorno" href="/homem-banda">O corpo como orquestra →</a>
+          <a class="botao botao--contorno" href="/obras/mphb">Show MPHB →</a>
+        </div>
+      </div>
+      <Video video={{ titulo: 'Mas que nada, no festival Chalon dans la Rue (França, 2023)', youtube: 'Iayk4bIzvtM' }} />
+    </div>
+    <div class="container mt-3">
+      <div class="numeros hb-num">
+        <div class="numero"><strong>5 meses</strong><span>de estudo com Santiago Moreno, na França</span></div>
+        <div class="numero"><strong>128</strong><span>inscritos na primeira formação em homem e mulher-banda do mundo</span></div>
+        <div class="numero"><strong>4 países</strong><span>na formação: Brasil, Itália, Austrália e EUA</span></div>
+        <div class="numero"><strong>7 países</strong><span>com homem-banda na rua: Brasil, Peru, Equador, Colômbia, Venezuela, França e Irlanda</span></div>
+      </div>
+    </div>
   </section>
 
   <!-- Apresentação -->
@@ -58,23 +91,6 @@ const eixos = [
           <div class="numero"><strong>{n.valor}</strong><span class="marca-texto">{n.rotulo}</span></div>
         ))}
       </div>
-    </div>
-  </section>
-
-  <!-- Homem-banda -->
-  <section class="secao secao--preto">
-    <div class="container duas-colunas">
-      <div>
-        <span class="rotulo">Eixo central da pesquisa</span>
-        <h2 class="titulo-secao"><span class="pilula pilula--ouro">Homem-Banda</span></h2>
-        <p>
-          Saxofone, bumbo, caixa, hi-hat, pratos, tamborins e voz, tocados ao mesmo tempo por cordas, roldanas e engenhocas, sem
-          tecnologia. A pesquisa começou de forma autodidata durante a vida na estrada e passou por cinco meses de estudo com
-          Santiago Moreno, em Nancy, na França.
-        </p>
-        <a class="botao botao--contorno" href="/homem-banda">O corpo como orquestra →</a>
-      </div>
-      <Video video={{ titulo: 'Mas que nada, no festival Chalon dans la Rue (França, 2023)', youtube: 'Iayk4bIzvtM' }} />
     </div>
   </section>
 
@@ -130,6 +146,8 @@ const eixos = [
   .capa__tags { justify-content: center; }
   .capa__plateia { width: 100%; min-width: 900px; margin: clamp(2rem, 6vw, 4rem) auto 0; position: relative; left: 50%; transform: translateX(-50%); }
   .arredondada { border-radius: var(--raio); }
+  .hb-num { color: var(--ouro); }
+  .hb-num span { color: var(--branco); }
   .eixo { border-color: var(--preto); }
   .eixo .cartao__titulo { font-size: 1.15rem; }
   .eixo:hover { background: var(--ouro); }

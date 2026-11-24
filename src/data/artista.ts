@@ -7,9 +7,9 @@ export const artista = {
   instagram: 'andreforecchi',
   instagramColetivo: 'osviajero',
   email: 'andreforecchi@gmail.com',
-  // Telefone: o PDF traz "+55 27 99312005" (falta um dígito). O workspace registra (27) 99731-2005.
-  // Confirmar com André antes de publicar.
-  whatsapp: '',
+  // Confirmado por André em 23/11/2026 (o PDF do portfólio tinha um dígito a menos).
+  telefone: '(27) 99731-2005',
+  whatsapp: '5527997312005',
 };
 
 export const atuacoes = [
@@ -54,8 +54,7 @@ export const premios = [
   { ano: 2021, nome: 'Prêmio Pontinhos de Cultura', orgao: 'SECULT-ES' },
   { ano: 2023, nome: 'Prêmio Cineclube Capixaba', orgao: 'SECULT-ES', obs: 'pelo Cine Bandolero' },
   { ano: 2025, nome: 'Prêmio Trajetórias', orgao: 'Aracruz' },
-  // Consta no Portfólio 2026 (PDF), mas não nos arquivos do workspace. Confirmar com André.
-  { ano: 2025, nome: 'Prêmio Coletivo Cultural', orgao: 'Vitória' },
+  // O "Prêmio Coletivo Cultural - Vitória (2025)" que aparece no PDF NÃO foi recebido (André, 23/11/2026). Não incluir.
 ];
 
 export const numeros = [

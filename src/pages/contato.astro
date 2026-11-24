@@ -26,7 +26,7 @@ import { artista } from '../data/artista';
       {artista.whatsapp && (
         <a class="canal" href={`https://wa.me/${artista.whatsapp}`} target="_blank" rel="noopener">
           <span class="mao">whatsapp</span>
-          <strong>Enviar mensagem</strong>
+          <strong>{artista.telefone}</strong>
         </a>
       )}
     </div>

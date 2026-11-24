@@ -13,6 +13,7 @@ const ano = new Date().getFullYear();
       </div>
       <ul class="rodape__links">
         <li><a href={`mailto:${artista.email}`}>{artista.email}</a></li>
+        <li><a href={`https://wa.me/${artista.whatsapp}`} target="_blank" rel="noopener">{artista.telefone}</a> <small>(WhatsApp)</small></li>
         <li><a href={`https://www.instagram.com/${artista.instagram}/`} target="_blank" rel="noopener">@{artista.instagram}</a></li>
         <li><a href={`https://www.instagram.com/${artista.instagramColetivo}/`} target="_blank" rel="noopener">@{artista.instagramColetivo}</a> <small>(coletivo)</small></li>
       </ul>

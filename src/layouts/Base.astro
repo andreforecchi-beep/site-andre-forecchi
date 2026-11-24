@@ -6,7 +6,7 @@ import Rodape from '../components/Rodape.astro';
 interface Props { titulo?: string; descricao?: string; imagem?: string }
 const {
   titulo,
-  descricao = 'André Forecchi, artista multidisciplinar capixaba: homem-banda, teatro, audiovisual e o cineclube itinerante Cine Bandolero.',
+  descricao = 'André Forecchi, homem-banda e artista multidisciplinar capixaba: shows, espetáculos, oficinas e a primeira formação em homem e mulher-banda do mundo. Também teatro, audiovisual e o Cine Bandolero.',
   imagem = '/img/marca/andre-recorte.webp',
 } = Astro.props;
 const tituloCompleto = titulo ? `${titulo} · André Forecchi` : 'André Forecchi · Artista multidisciplinar';
