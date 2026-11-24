@@ -1,0 +1,32 @@
+---
+import type { Obra } from '../data/obras';
+import { nomesCategoria } from '../data/obras';
+interface Props { obra: Obra }
+const { obra } = Astro.props;
+const img = obra.capa?.src;
+---
+<a class="cartao" href={`/obras/${obra.slug}`}>
+  {img ? (
+    <img class="cartao__img" src={img} alt="" loading="lazy" />
+  ) : obra.logo ? (
+    <div class="cartao__img cartao__logo"><img src={obra.logo} alt="" loading="lazy" /></div>
+  ) : (
+    <div class="cartao__img cartao__vazio"><span>{obra.titulo}</span></div>
+  )}
+  <div class="cartao__corpo">
+    <span class="cartao__meta">{nomesCategoria[obra.categoria]}{obra.ano && ` · ${obra.ano}`}</span>
+    <h3 class="cartao__titulo">{obra.titulo}</h3>
+    <p class="cartao__texto">{obra.resumo}</p>
+    <span class="cartao__seta">Ver obra →</span>
+  </div>
+</a>
+
+<style>
+  .cartao__logo { display: grid; place-items: center; background: var(--papel); padding: 1.5rem; }
+  .cartao__logo img { max-height: 100%; max-width: 80%; object-fit: contain; }
+  .cartao__vazio {
+    display: grid; place-items: center; padding: 1.5rem; text-align: center;
+    background: var(--ouro) url('/img/marca/gotas-brancas.svg'); background-size: 200px;
+  }
+  .cartao__vazio span { background: var(--preto); color: var(--branco); font-weight: 800; padding: 0.2em 0.55em; border-radius: 10px; font-size: 1.15rem; }
+</style>

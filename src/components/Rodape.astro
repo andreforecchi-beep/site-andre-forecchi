@@ -1,0 +1,33 @@
+---
+import Logo from './Logo.astro';
+import { artista } from '../data/artista';
+const ano = new Date().getFullYear();
+---
+<footer class="rodape">
+  <img class="rodape__ondas" src="/img/marca/ondas.webp" alt="" width="1600" height="377" loading="lazy" />
+  <div class="rodape__faixa">
+    <div class="container rodape__grade">
+      <div>
+        <Logo largura="230px" cor="var(--ouro)" />
+        <p class="rodape__assina">Artista multidisciplinar capixaba. Homem-banda, teatro, audiovisual e cineclube.</p>
+      </div>
+      <ul class="rodape__links">
+        <li><a href={`mailto:${artista.email}`}>{artista.email}</a></li>
+        <li><a href={`https://www.instagram.com/${artista.instagram}/`} target="_blank" rel="noopener">@{artista.instagram}</a></li>
+        <li><a href={`https://www.instagram.com/${artista.instagramColetivo}/`} target="_blank" rel="noopener">@{artista.instagramColetivo}</a> <small>(coletivo)</small></li>
+      </ul>
+    </div>
+    <p class="container rodape__copy">© {ano} André Forecchi · Companhia OsViajero</p>
+  </div>
+</footer>
+
+<style>
+  .rodape { background: var(--preto); color: var(--branco); overflow: hidden; }
+  .rodape__ondas { width: min(1100px, 95%); height: auto; display: block; margin: 0 0 -1rem auto; opacity: 0.9; }
+  .rodape__faixa { padding: 1.5rem 0 1.75rem; }  .rodape__grade { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem 3rem; align-items: flex-start; }
+  .rodape__assina { margin: 0.75rem 0 0; max-width: 36ch; font-size: 0.95rem; }
+  .rodape__links { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.35rem; font-weight: 600; }
+  .rodape__links a { text-decoration: none; border-bottom: 2px solid var(--ouro); }
+  .rodape__links a:hover { background: var(--ouro); color: var(--preto); }
+  .rodape__copy { font-size: 0.82rem; margin-top: 1.5rem; margin-bottom: 0; opacity: 0.8; }
+</style>

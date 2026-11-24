@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import Video from '../components/Video.astro';
+import { materias, outrasAparicoes, registros, recortes } from '../data/imprensa';
+---
+<Base titulo="Imprensa" descricao="André Forecchi e o Coletivo OsViajero na TV e na imprensa: TVE, TV Gazeta, TV Mirante, TV Itararé e outros.">
+  <Cabecalho
+    titulo="Imprensa"
+    rotulo="clipping"
+    subtitulo="Matérias de TV, entrevistas e recortes de jornais sobre o homem-banda, o OsViajero e as obras."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Na TV</span></h2>
+      <div class="grade grade-2">
+        {materias.map((m) => (
+          <article>
+            <Video video={{ titulo: m.titulo, youtube: m.youtube, inicio: m.inicio, url: m.youtube ? undefined : m.url }} capa={m.imagem} />
+            <p class="materia__meta"><strong>{m.veiculo}</strong> · {m.data}</p>
+          </article>
+        ))}
+      </div>
+      <p class="mt-2"><strong>Também:</strong> {outrasAparicoes.join(' · ')}</p>
+    </div>
+  </section>
+
+  <section class="secao secao--preto">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula pilula--ouro">Registros em vídeo</span></h2>
+      <div class="grade grade-2">
+        {registros.map((r) => <Video video={r} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--ouro gotas">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Recortes</span></h2>
+      <div class="recortes">
+        {recortes.map((r) => (
+          <a href={r} target="_blank" rel="noopener"><img src={r} alt="Recorte de matéria de jornal ou site sobre André Forecchi" loading="lazy" /></a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .materia__meta { font-size: 0.88rem; color: var(--texto-suave); margin-top: 0.2rem; }
+  .recortes { columns: 4 200px; column-gap: 1rem; }
+  .recortes a { display: block; margin-bottom: 1rem; break-inside: avoid; border: 3px solid var(--branco); border-radius: 8px; overflow: hidden; }
+  .recortes a:hover { border-color: var(--preto); }
+</style>

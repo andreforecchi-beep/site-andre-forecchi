@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import ObraDestaque from '../components/ObraDestaque.astro';
+import { porCategoria } from '../data/obras';
+const pecas = porCategoria('teatro');
+---
+<Base titulo="Teatro" descricao="Espetáculos de André Forecchi e do Coletivo OsViajero: Capixaba, eu?, Homem-Banda, um manifesto e Palito de Fósforo.">
+  <Cabecalho
+    titulo="Teatro"
+    subtitulo="Teatro de rua e teatro documental: a calçada como palco e a própria vida como matéria dramatúrgica."
+  />
+  {pecas.map((o, i) => <ObraDestaque obra={o} escuro={i % 2 === 1} />)}
+</Base>

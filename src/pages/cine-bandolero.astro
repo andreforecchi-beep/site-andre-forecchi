@@ -1,0 +1,97 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+
+const numeros = [
+  { valor: '250+', rotulo: 'exibições gratuitas' },
+  { valor: '7 mil+', rotulo: 'pessoas alcançadas diretamente' },
+  { valor: '10+', rotulo: 'estados brasileiros, além do Peru' },
+  { valor: '2017', rotulo: 'ano da primeira sessão' },
+];
+
+const locais = [
+  { src: '/img/cine-bandolero/aldeia-braganca-munduruku-2019.webp', legenda: 'Aldeia Bragança, território Munduruku, Belterra, Pará (2019)' },
+  { src: '/img/cine-bandolero/santo-amaro-lencois-2018.webp', legenda: 'Santo Amaro do Maranhão, Lençóis Maranhenses (2018)' },
+  { src: '/img/cine-bandolero/taray-cuzco-2019.webp', legenda: 'Taray, comunidade andina do Vale Sagrado, Cuzco, Peru (2019)' },
+  { src: '/img/cine-bandolero/rio-madeira-2019.webp', legenda: 'Para a comunidade venezuelana no meio do Rio Madeira, na travessia Manaus x Porto Velho (2019)' },
+  { src: '/img/cine-bandolero/una-de-moraes-2019.webp', legenda: 'Una de Moraes, Maranhão (2019)' },
+  { src: '/img/cine-bandolero/aldeia-pau-brasil-tupinikim-2019.webp', legenda: 'Aldeia Pau Brasil, território Tupinikim, Aracruz, ES (2019)' },
+  { src: '/img/cine-bandolero/praia-formosa-2023.webp', legenda: 'Praia Formosa, Aracruz, ES (2023)' },
+  { src: '/img/cine-bandolero/encontro-das-aguas-serra-2024.webp', legenda: 'Praça Encontro das Águas, Serra, ES (2024)' },
+  { src: '/img/cine-bandolero/castelandia-serra-2024.webp', legenda: 'Praça da Castelândia, Serra, ES (2024)' },
+];
+---
+<Base titulo="Cine Bandolero" descricao="Cineclube itinerante desde 2017: mais de 250 sessões gratuitas de cinema nacional, ao ar livre, a bordo da Kombi Djanira. Prêmio Cineclube Capixaba 2023.">
+  <Cabecalho
+    escuro
+    titulo="Cine Bandolero"
+    rotulo="cineclube itinerante desde 2017"
+    subtitulo="Na linguagem sertaneja, bandolero significa viajante. Sessões gratuitas de cinema, ao ar livre, com roda de conversa, suco e pipoca."
+  >
+    <img class="cb__logo" src="/img/logos/cine-bandolero.webp" alt="" width="489" height="167" />
+  </Cabecalho>
+
+  <section class="secao secao--branco">
+    <div class="container duas-colunas duas-colunas--texto-largo">
+      <div class="estreito">
+        <p class="lead">
+          Foi assim, de forma itinerante e improvisada, que o Cine Bandolero surgiu: levando sessões gratuitas de cinema a comunidades em
+          situação de vulnerabilidade social.
+        </p>
+        <p>
+          Hoje o projeto acontece a bordo do Centro de Cultura Itinerante Djanira, uma Kombi equipada com projetor, som e energia solar,
+          que já percorreu o Espírito Santo, mais de dez estados brasileiros e o Peru.
+        </p>
+        <p>
+          A curadoria prioriza filmes nacionais com temáticas sociais relevantes, como direitos humanos, diversidade e povos originários.
+          Em 2023, o Cine Bandolero recebeu o <strong>Prêmio Cineclube Capixaba</strong>, da Secretaria de Cultura do Espírito Santo.
+        </p>
+        <p>O Cine Bandolero é um projeto do Coletivo OsViajero e integra a OCCA, Organização dos Cineclubes Capixabas.</p>
+      </div>
+      <img src="/img/marca/djanira-tela.webp" alt="A Kombi Djanira com a tela de projeção armada na lateral" width="714" height="401" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="secao secao--grafite gotas-ouro-sutil">
+    <div class="container">
+      <div class="numeros">
+        {numeros.map((n) => <div class="numero cb__num"><strong>{n.valor}</strong><span>{n.rotulo}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--ouro gotas">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Por onde a tela já se abriu</span></h2>
+      <div class="grade grade-3">
+        {locais.map((l) => (
+          <figure class="figura figura--etiqueta">
+            <img src={l.src} alt={`Sessão do Cine Bandolero: ${l.legenda}`} loading="lazy" class="cb__foto" />
+            <figcaption><span>{l.legenda}</span></figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--branco">
+    <div class="container estreito">
+      <h2 class="titulo-secao"><span class="pilula">No Espírito Santo</span></h2>
+      <p>
+        Desde a volta ao Espírito Santo, a experiência acumulada em centenas de sessões passou a ser aplicada de forma continuada em
+        escolas e praças capixabas. Na Serra, o projeto <strong>Bandolerando</strong> (2024) fez 12 exibições em quatro escolas públicas e
+        na Praça Encontro das Águas, para mais de 900 pessoas, com curadoria de mais de 30 curtas e janela de Libras em seis obras.
+      </p>
+      <h3 class="h3 mt-2">Temas da curadoria</h3>
+      <ul class="etiquetas">{['Direitos humanos', 'Diversidade', 'Povos originários', 'Cinema nacional'].map((t) => <li>{t}</li>)}</ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cb__logo { width: min(420px, 80%); margin-top: 2rem; }
+  .cb__num { color: var(--ouro); }
+  .cb__num span { color: var(--branco); }
+  .cb__foto { aspect-ratio: 4 / 3; }
+  .h3 { font-size: 1.2rem; }
+</style>

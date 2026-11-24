@@ -1,0 +1,131 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import Video from '../components/Video.astro';
+import CartaoObra from '../components/CartaoObra.astro';
+import { porSlug } from '../data/obras';
+
+const relacionados = ['homem-banda-um-manifesto', 'mphb', 'homem-banda-a-formacao', 'dissociando-o-corpo'].map((s) => porSlug(s)!);
+
+const conceitos = [
+  {
+    titulo: 'O corpo como orquestra',
+    texto: 'O homem-banda não é só um músico tocando vários instrumentos. O performer transforma o próprio corpo numa estrutura musical expandida: é ao mesmo tempo músico, instrumento, máquina, intérprete e dispositivo cênico.',
+  },
+  {
+    titulo: 'Dissociação corporal',
+    texto: 'Um pé marca o pulso, o outro aciona um mecanismo de percussão, uma mão faz a melodia, a outra acompanha e a voz canta. É técnica musical e também ferramenta pedagógica, criativa e de desenvolvimento corporal.',
+  },
+  {
+    titulo: 'Cultura maker como método',
+    texto: 'O artista projeta, constrói, adapta, testa e modifica os próprios equipamentos. Os protótipos fazem parte da obra: construir o dispositivo é inseparável da pesquisa de cena.',
+  },
+];
+
+const galeria = [
+  { src: '/img/homem-banda/nancy-inicio-estudos-2023.webp', legenda: 'O começo dos estudos com Santiago Moreno. Nancy, França (2023)' },
+  { src: '/img/homem-banda/nancy-ultimo-dia-santiago-2023.webp', legenda: 'O último dia juntos, cinco meses depois, com a bandeira do Espírito Santo. Nancy (2023)' },
+  { src: '/img/homem-banda/galway-irlanda-2023.webp', legenda: 'Pesquisa de arte e performance de rua em Galway, Irlanda (2023). Foto: P. Russel' },
+  { src: '/img/homem-banda/chalon-dans-la-rue-2023.webp', legenda: 'Apresentação no festival Chalon dans la Rue, França (2023)' },
+  { src: '/img/homem-banda/palomino-colombia-2022.webp', legenda: 'Gravação de clipe à beira do rio Palomino, Colômbia (2022). Foto: Dolores M.' },
+  { src: '/img/homem-banda/manifesto-fenatevi-2024.webp', legenda: 'Homem-Banda, um manifesto no FENATEVI, Vitória (2024). Foto: Vitor Cavatti' },
+];
+---
+<Base titulo="Homem-Banda" descricao="A pesquisa de André Forecchi em homem-banda: corpo como orquestra, dissociação corporal e cultura maker. Residência com Santiago Moreno na França.">
+  <Cabecalho
+    titulo="Homem-Banda"
+    rotulo="o corpo como orquestra"
+    subtitulo="Um único performer executa vários instrumentos ao mesmo tempo, integrando corpo, mecânica, ritmo, coordenação motora e performance."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container duas-colunas duas-colunas--texto-largo">
+      <div class="estreito">
+        <p class="lead">
+          No meio da residência artística itinerante, o caminho de André encontrou a arte singular do homem-banda e o fazer cultural
+          tomou outro rumo.
+        </p>
+        <p>
+          A pesquisa começou em 2020, de forma autodidata: observando artistas de outros países, construindo os próprios equipamentos e
+          testando tudo em apresentações de rua. Ele estudou sozinho, à exaustão, a execução simultânea de instrumentos através de
+          cordas, roldanas e engenhocas.
+        </p>
+        <p>
+          O homem-banda abriu novas portas. Depois de se apresentar no Espírito Santo, Goiás, Santa Catarina e Rio Grande do Norte (2022),
+          e no Peru, Equador, Colômbia e Venezuela (2023), André recebeu a proposta de estudar por cinco meses com Santiago Moreno, na
+          França, tido como o melhor homem-banda do mundo.
+        </p>
+        <p>Hoje ministra oficinas, atua em espetáculos e se apresenta em diversos lugares com a sua criação.</p>
+        <h2 class="h3 mt-2">Instrumentos</h2>
+        <ul class="etiquetas">{['Saxofone', 'Bumbo', 'Caixa', 'Hi-hat', 'Pratos', 'Tamborins', 'Voz'].map((i) => <li>{i}</li>)}</ul>
+      </div>
+      <img src="/img/marca/andre-recorte.webp" alt="André Forecchi com o bumbo e os pratos do homem-banda nas costas" width="1280" height="853" loading="lazy" />
+    </div>
+  </section>
+
+  <section class="secao secao--preto">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula pilula--ouro">Conceitos</span></h2>
+      <div class="grade grade-3">
+        {conceitos.map((c) => (
+          <article class="conceito">
+            <h3>{c.titulo}</h3>
+            <p>{c.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--ouro gotas">
+    <div class="container duas-colunas">
+      <div>
+        <span class="rotulo">Residência internacional · 2023</span>
+        <h2 class="titulo-secao"><span class="pilula">Nancy, França</span></h2>
+        <p><span class="marca-texto">
+          Cinco meses de mentoria com Santiago Moreno, dedicados à dissociação rítmica, à construção de protótipos, à metodologia
+          e à aplicação teatral do homem-banda.
+        </span></p>
+        <p><span class="marca-texto">
+          Artistas importantes para a pesquisa: Santiago Moreno (França/Argentina), Martin Orkestar e Karl Orquesta.
+        </span></p>
+      </div>
+      <Video video={{ titulo: 'Mas que nada, no festival Chalon dans la Rue (França, 2023)', youtube: 'Iayk4bIzvtM' }} />
+    </div>
+  </section>
+
+  <section class="secao secao--branco">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Registros</span></h2>
+      <div class="grade grade-3">
+        {galeria.map((g) => (
+          <figure class="figura">
+            <img src={g.src} alt={g.legenda} loading="lazy" class="foto" />
+            <figcaption>{g.legenda}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="grade grade-2 mt-3">
+        <Video video={{ titulo: 'Tico-Tico no Fubá, de Zequinha Abreu, arranjo para homem-banda (Galway, 2023). FLPB Produções', youtube: '5ykTeERrUb0' }} />
+        <Video video={{ titulo: 'Em Movimento, TV Gazeta (2024): "Capixaba vira homem-banda e toca 9 instrumentos sozinho"', url: 'https://globoplay.globo.com/v/12515654/' }} capa="/img/imprensa/p25_726.webp" />
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--grafite gotas-ouro-sutil">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula pilula--ouro">Obras e formações</span></h2>
+      <div class="grade grade-4">
+        {relacionados.map((o) => <CartaoObra obra={o} />)}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .h3 { font-size: 1.25rem; }
+  .conceito { border: 2px solid var(--ouro); border-radius: var(--raio); padding: 1.5rem; }
+  .conceito h3 { color: var(--ouro); font-size: 1.3rem; }
+  .conceito p { margin: 0; color: rgba(255,255,255,0.88); }
+  .foto { aspect-ratio: 4 / 3; }
+</style>

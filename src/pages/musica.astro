@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import ObraDestaque from '../components/ObraDestaque.astro';
+import CartaoObra from '../components/CartaoObra.astro';
+import { porSlug, porCategoria } from '../data/obras';
+const mphb = porSlug('mphb')!;
+const podcasts = porCategoria('podcast');
+---
+<Base titulo="Música" descricao="MPHB, Música Popular de Homem-Banda: show de André Forecchi com samba, baião, bossa-nova, choro e autorais. Podcasts do OsViajero.">
+  <Cabecalho
+    titulo="Música"
+    subtitulo="A pesquisa musical gira em torno do homem-banda, com foco na performance instrumental e no repertório brasileiro."
+  />
+  <ObraDestaque obra={mphb} />
+
+  <section class="secao secao--ouro gotas">
+    <div class="container estreito">
+      <p class="mb-0"><span class="marca-texto">
+        Quando a música encontra o teatro, a pesquisa vira o espetáculo
+        <a href="/obras/homem-banda-um-manifesto"><strong>Homem-Banda, um manifesto</strong></a> (2024).
+        Para a técnica e a história da pesquisa, veja a página <a href="/homem-banda"><strong>Homem-Banda</strong></a>.
+      </span></p>
+    </div>
+  </section>
+
+  <section class="secao secao--branco">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Podcasts</span></h2>
+      <div class="grade grade-2">{podcasts.map((o) => <CartaoObra obra={o} />)}</div>
+    </div>
+  </section>
+</Base>

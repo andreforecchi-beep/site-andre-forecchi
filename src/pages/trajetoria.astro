@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import Video from '../components/Video.astro';
+import { linhaDoTempo, paisesComAtuacao } from '../data/artista';
+---
+<Base titulo="Trajetória" descricao="Seis anos de residência artística itinerante na Kombi Djanira: 50 mil km pela América Latina, 300 ações culturais gratuitas.">
+  <Cabecalho
+    titulo="Trajetória"
+    subtitulo="Seis anos morando numa Kombi, 50 mil quilômetros pela América Latina e a arte de rua como fonte de renda e fio condutor."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container duas-colunas duas-colunas--texto-largo">
+      <div class="estreito">
+        <p class="lead">
+          A trajetória artística de André Forecchi se entrelaça com a história da Companhia OsViajero, criada com o irmão gêmeo Davi.
+          Em 2017, os dois embarcaram em uma residência artística itinerante e ininterrupta, morando por seis anos numa Kombi batizada de Djanira.
+        </p>
+        <p>
+          Nessa jornada, percorreram mais de 50 mil quilômetros pela América Latina, atravessando 18 estados brasileiros e países como
+          Peru, Equador, Colômbia e Venezuela. A arte de rua foi a principal fonte de renda e também o fio condutor da experiência:
+          apresentações, música, teatro, teatro de bonecos, contação de histórias, cineclube e oficinas.
+        </p>
+        <p>
+          Conforme amadureciam artisticamente, os irmãos ampliaram o alcance social do trabalho: mais de 300 ações culturais gratuitas em
+          escolas públicas, comunidades, hospitais e orfanatos, com mais de 4 mil pessoas alcançadas diretamente.
+        </p>
+        <p>
+          Em 2023, André voltou o olhar para o solo onde foi criado e passou a desenvolver oficinas, espetáculos e projetos em todo o
+          Espírito Santo. A jornada virou filme, o documentário <a href="/obras/nos-de-nos-dois">Nós de nós dois</a>.
+        </p>
+      </div>
+      <figure class="figura">
+        <img src="/img/marca/mapa-rota.webp" alt="Mapa da América do Sul com a rota da Djanira e a frase: o real dever do artista é salvar o sonho (Modigliani)" width="738" height="718" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="secao secao--ouro gotas">
+    <div class="container grade grade-3">
+      <figure class="figura figura--etiqueta">
+        <img src="/img/trajetoria/fronteira-inapari-peru-2019.webp" alt="André e Davi em frente à Djanira na fronteira com o Peru" loading="lazy" />
+        <figcaption><span>André e Davi cruzando a primeira fronteira internacional com a Djanira. Iñapari, Peru (2019). Foto: Flor L.</span></figcaption>
+      </figure>
+      <figure class="figura figura--etiqueta">
+        <img src="/img/trajetoria/gravacao-tv-mirante-2019.webp" alt="André e Davi sorrindo com uma claquete dentro da Kombi" loading="lazy" />
+        <figcaption><span>Gravação para o programa Daqui, da TV Mirante, afiliada Globo no Maranhão (2019)</span></figcaption>
+      </figure>
+      <Video video={{ titulo: 'OsViajero no programa Daqui (TV Mirante, 2019)', youtube: '06l_9RLFohw' }} capa="/img/trajetoria/tv-mirante-daqui-2019.webp" />
+    </div>
+  </section>
+
+  <section class="secao secao--branco" id="djanira">
+    <div class="container duas-colunas">
+      <div>
+        <h2 class="titulo-secao"><span class="pilula">CCIDjanira</span></h2>
+        <p>
+          Djanira é o nome de batismo da Kombi 2003 que foi o passaporte para os gêmeos, então com 23 anos, caírem no mundo. Ela foi
+          toda equipada como uma casa: cama, banheiro seco, chuveiro, cozinha, pia e armários, tudo projetado e construído pelos próprios irmãos.
+        </p>
+        <p>
+          Com o passar dos anos, Djanira foi se tornando cada vez menos um lar e mais a alma dos projetos culturais. Com o fim da vida
+          itinerante, em 2023, assumiu de vez o papel de Centro de Cultura Itinerante (CCIDjanira): base de transporte, logística e cenário
+          para os espetáculos do OsViajero e para o Cine Bandolero, com projetor, som e energia solar.
+        </p>
+      </div>
+      <img src="/img/marca/djanira-mockup.webp" alt="A Kombi Djanira com a identidade visual do artista" loading="lazy" class="arredondada" />
+    </div>
+  </section>
+
+  <section class="secao secao--preto">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula pilula--ouro">Linha do tempo</span></h2>
+      <ol class="linha-tempo tempo">
+        {linhaDoTempo.map((m) => (
+          <li>
+            <strong>{m.ano}</strong>
+            <ul>{m.itens.map((i) => <li>{i}</li>)}</ul>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="secao secao--branco">
+    <div class="container">
+      <h2 class="h3">Países com atuação do coletivo</h2>
+      <ul class="etiquetas">{['Brasil (mais de 20 estados)', ...paisesComAtuacao].map((p) => <li>{p}</li>)}</ul>
+      <h2 class="h3 mt-2">Editais e políticas públicas</h2>
+      <p>Mais de 60 projetos realizados desde 2020 via Lei Aldir Blanc, Funcultura, PNAB, Lei Paulo Gustavo e SECULT-ES.</p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .h3 { font-size: 1.25rem; }
+  .arredondada { border-radius: var(--raio); }
+  .tempo > li > ul { margin: 0.35rem 0 0; padding-left: 1.1rem; color: rgba(255,255,255,0.85); }
+  .tempo > li > ul li { margin-bottom: 0.25rem; }
+  .tempo strong { color: var(--ouro); font-size: 1.5rem; }
+  .figura--etiqueta img { aspect-ratio: 4 / 3; }
+</style>

@@ -1,0 +1,23 @@
+---
+// Logotipo manuscrito "ANDRÉ FORECCHI" extraído do portfólio (PNG com transparência).
+// Usado como máscara CSS para poder trocar a cor (preto, branco ou ouro).
+interface Props { cor?: string; largura?: string; class?: string }
+const { cor = 'var(--preto)', largura = '220px', class: classe = '' } = Astro.props;
+---
+<span
+  class={`logo ${classe}`}
+  role="img"
+  aria-label="André Forecchi"
+  style={`--cor:${cor};--larg:${largura}`}
+></span>
+
+<style>
+  .logo {
+    display: inline-block;
+    width: var(--larg);
+    aspect-ratio: 604 / 105;
+    background: var(--cor);
+    -webkit-mask: url('/img/marca/logo-andre-forecchi.png') center / contain no-repeat;
+    mask: url('/img/marca/logo-andre-forecchi.png') center / contain no-repeat;
+  }
+</style>

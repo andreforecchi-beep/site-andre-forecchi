@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import { atuacoes, idiomas, principios, premios } from '../data/artista';
+---
+<Base titulo="O Artista" descricao="André Forecchi é artista multidisciplinar, natural de Aracruz (ES): homem-banda, ator, escritor, compositor, cineclubista e produtor cultural.">
+  <Cabecalho
+    titulo="O Artista"
+    subtitulo="Artista multidisciplinar, natural de Aracruz (ES). A linguagem do homem-banda é o eixo central da pesquisa."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container duas-colunas duas-colunas--texto-largo">
+      <div class="estreito">
+        <p class="lead">
+          André Forecchi nasceu em Aracruz, no Espírito Santo, no dia de Iemanjá, 2 de fevereiro, e entendeu desde cedo a arte
+          como um campo integral e diverso.
+        </p>
+        <p>
+          Atua como escritor, compositor, produtor cultural e audiovisual, ator, cineclubista, oficineiro, multi-instrumentista,
+          criador de conteúdo para redes sociais e homem-banda. A trajetória está ligada à Companhia OsViajero, criada com o irmão
+          gêmeo Davi, com quem viveu seis anos na estrada a bordo da Kombi Djanira.
+        </p>
+        <p>
+          Nas horas vagas, dedica-se ao xadrez, ao forró e ao estudo de idiomas.
+        </p>
+        <h2 class="h3 mt-2">Atuações</h2>
+        <ul class="etiquetas">{atuacoes.map((a) => <li>{a}</li>)}</ul>
+        <h2 class="h3 mt-2">Idiomas</h2>
+        <ul class="etiquetas">{idiomas.map((a) => <li>{a}</li>)}</ul>
+      </div>
+      <figure class="figura">
+        <img src="/img/marca/andre-recorte.webp" alt="Retrato em preto e branco de André Forecchi, de chapéu, com o bumbo do homem-banda nas costas" width="1280" height="853" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="secao secao--ouro gotas">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Princípios</span></h2>
+      <p class="mb-2"><span class="marca-texto">Eixos que atravessam toda a produção, do palco à oficina.</span></p>
+      <div class="grade grade-3">
+        {principios.map((p, i) => (
+          <article class="principio">
+            <span class="principio__n">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{p.titulo}</h3>
+            <p>{p.texto}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--preto">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula pilula--ouro">Prêmios</span></h2>
+      <ul class="premios">
+        {premios.map((p) => (
+          <li>
+            <span class="premios__ano">{p.ano}</span>
+            <span><strong>{p.nome}</strong> · {p.orgao}{p.obs && <em> ({p.obs})</em>}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="secao secao--branco">
+    <div class="container estreito">
+      <h2 class="h3">Acessibilidade e representatividade</h2>
+      <p>
+        André Forecchi é pessoa com deficiência física de origem congênita. A acessibilidade (legendas, janela de Libras,
+        audiodescrição) faz parte dos projetos que realiza.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .h3 { font-size: 1.25rem; }
+  .principio { background: var(--branco); border-radius: var(--raio); padding: 1.4rem 1.5rem; border: 2px solid var(--preto); }
+  .principio__n { font-family: var(--fonte-mao); font-size: 2rem; font-weight: 700; line-height: 1; }
+  .principio h3 { font-size: 1.2rem; margin: 0.35rem 0 0.5rem; }
+  .principio p { margin: 0; font-size: 0.98rem; }
+  .premios { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
+  .premios li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1rem; align-items: baseline; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 0.9rem; font-size: 1.1rem; }
+  .premios__ano { color: var(--ouro); font-weight: 800; font-size: 1.4rem; }
+</style>

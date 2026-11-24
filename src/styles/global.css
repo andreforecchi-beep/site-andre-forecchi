@@ -1,0 +1,208 @@
+/* Identidade visual extraída do Portfólio 2026 (PDF).
+   Ouro medido nos vetores do PDF: #D8B40A. Preto puro nas pílulas e silhuetas.
+   Grafite #2E2E33 vem da página do Cine Bandolero. */
+
+@import '@fontsource/open-sans/400.css';
+@import '@fontsource/open-sans/600.css';
+@import '@fontsource/open-sans/700.css';
+@import '@fontsource/open-sans/800.css';
+@import '@fontsource/caveat/500.css';
+@import '@fontsource/caveat/700.css';
+
+:root {
+  --ouro: #d8b40a;
+  --preto: #000;
+  --grafite: #2e2e33;
+  --papel: #fefdfa;
+  --branco: #fff;
+  --texto: #1b1b1b;
+  --texto-suave: #55524a;
+  --linha: rgba(0, 0, 0, 0.12);
+
+  --fonte: 'Open Sans', system-ui, sans-serif;
+  --fonte-mao: 'Caveat', cursive;
+
+  --largura: 1180px;
+  --raio: 14px;
+  --nav-h: 64px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); }
+
+body {
+  margin: 0;
+  font-family: var(--fonte);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: var(--texto);
+  background: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; }
+p { margin: 0 0 1em; }
+h1, h2, h3, h4 { line-height: 1.15; margin: 0 0 0.5em; font-weight: 800; letter-spacing: -0.01em; }
+
+:focus-visible { outline: 3px solid var(--ouro); outline-offset: 3px; border-radius: 4px; }
+
+.container { width: min(100% - 2.5rem, var(--largura)); margin-inline: auto; }
+.estreito { max-width: 68ch; }
+
+/* ---------- Seções ---------- */
+.secao { padding-block: clamp(3.5rem, 8vw, 6.5rem); position: relative; }
+.secao--ouro { background: var(--ouro); color: var(--preto); }
+.secao--preto { background: var(--preto); color: var(--branco); }
+.secao--grafite { background: var(--grafite); color: var(--branco); }
+.secao--branco { background: var(--branco); }
+.gotas { background-image: url('/img/marca/gotas-brancas.svg'); background-size: 240px; }
+.gotas-ouro { background-image: url('/img/marca/gotas-ouro.svg'); background-size: 240px; }
+.gotas-ouro-sutil { position: relative; }
+.gotas-ouro-sutil::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: url('/img/marca/gotas-ouro.svg'); background-size: 240px; opacity: 0.18;
+}
+.gotas-ouro-sutil > * { position: relative; }
+
+/* ---------- Títulos em pílula (assinatura do portfólio) ---------- */
+.pilula {
+  display: inline-block;
+  background: var(--preto);
+  color: var(--branco);
+  font-weight: 700;
+  border-radius: var(--raio);
+  padding: 0.18em 0.55em 0.24em;
+  line-height: 1.15;
+}
+.pilula--ouro { background: var(--ouro); color: var(--preto); }
+.pilula--branca { background: var(--branco); color: var(--preto); }
+
+.titulo-secao { font-size: clamp(1.9rem, 4.5vw, 3rem); margin-bottom: 1.25rem; }
+
+.rotulo {
+  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--texto-suave); margin-bottom: 0.6rem; display: block;
+}
+.secao--preto .rotulo, .secao--grafite .rotulo { color: var(--ouro); }
+.secao--ouro .rotulo { color: var(--preto); opacity: 0.75; }
+
+/* Texto com "marca-texto" (como os blocos do portfólio sobre fundo ouro) */
+.marca-texto {
+  display: inline;
+  background: var(--branco);
+  color: var(--preto);
+  padding: 0.12em 0.35em;
+  line-height: 1.85;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+.marca-texto--preto { background: var(--preto); color: var(--branco); }
+
+/* Anotação manuscrita (Caveat) */
+.mao { font-family: var(--fonte-mao); font-weight: 700; font-size: 1.5rem; line-height: 1.1; }
+
+/* ---------- Grade e cartões ---------- */
+.grade { display: grid; gap: 1.5rem; }
+.grade-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+.grade-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.grade-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+
+.cartao {
+  background: var(--branco);
+  border: 2px solid var(--linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s;
+  display: flex; flex-direction: column;
+  color: var(--texto);
+}
+a.cartao { text-decoration: none; }
+a.cartao:hover { border-color: var(--ouro); transform: translateY(-2px); }
+.cartao__img { aspect-ratio: 3 / 2; object-fit: cover; width: 100%; background: #eee; }
+.cartao__corpo { padding: 1.1rem 1.25rem 1.35rem; display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
+.cartao__meta { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--texto-suave); }
+.cartao__titulo { font-size: 1.3rem; margin: 0; }
+.cartao__texto { font-size: 0.97rem; color: var(--texto-suave); margin: 0; }
+.cartao__seta { margin-top: auto; padding-top: 0.6rem; font-weight: 700; font-size: 0.9rem; }
+
+/* ---------- Números ---------- */
+.numeros { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 1rem; }
+.numero { border-top: 3px solid currentColor; padding-top: 0.75rem; }
+.numero strong { display: block; font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 800; line-height: 1; letter-spacing: -0.02em; }
+.numero span { display: block; font-size: 0.95rem; margin-top: 0.4rem; }
+
+/* ---------- Etiquetas ---------- */
+.etiquetas { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+.etiquetas li {
+  border: 2px solid currentColor; border-radius: 999px; padding: 0.2rem 0.8rem;
+  font-size: 0.88rem; font-weight: 600;
+}
+.etiquetas--cheias li { background: var(--preto); color: var(--branco); border-color: var(--preto); }
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--preto); color: var(--branco);
+  font-weight: 700; text-decoration: none;
+  padding: 0.75rem 1.25rem; border-radius: 999px;
+  border: 2px solid var(--preto);
+  transition: background 0.2s, color 0.2s;
+}
+.botao:hover { background: var(--ouro); color: var(--preto); border-color: var(--ouro); }
+.botao--contorno { background: transparent; color: inherit; border-color: currentColor; }
+.botao--contorno:hover { background: var(--preto); color: var(--branco); border-color: var(--preto); }
+.secao--preto .botao--contorno:hover, .secao--grafite .botao--contorno:hover { background: var(--ouro); color: var(--preto); border-color: var(--ouro); }
+.botoes { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+/* ---------- Figuras com legenda ---------- */
+figure { margin: 0; }
+.figura img { border-radius: 10px; width: 100%; object-fit: cover; }
+.figura figcaption { font-size: 0.85rem; color: var(--texto-suave); margin-top: 0.5rem; line-height: 1.4; }
+.secao--preto .figura figcaption, .secao--grafite .figura figcaption { color: rgba(255,255,255,0.7); }
+.secao--ouro .figura figcaption { color: var(--preto); }
+
+/* Legenda em etiqueta preta, como no portfólio */
+.figura--etiqueta { position: relative; }
+.figura--etiqueta figcaption {
+  position: absolute; left: 0.6rem; bottom: 0.6rem; right: 0.6rem; margin: 0;
+  color: var(--branco) !important; font-size: 0.8rem;
+}
+.figura--etiqueta figcaption span {
+  background: var(--preto); padding: 0.1em 0.4em; line-height: 1.7;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone;
+}
+
+/* ---------- Ficha técnica ---------- */
+.ficha { display: grid; grid-template-columns: minmax(140px, 0.6fr) 1fr; gap: 0.35rem 1.25rem; margin: 0; }
+.ficha dt { font-weight: 700; font-size: 0.92rem; }
+.ficha dd { margin: 0; font-size: 0.95rem; }
+@media (max-width: 560px) { .ficha { grid-template-columns: 1fr; } .ficha dd { margin-bottom: 0.5rem; } }
+
+/* ---------- Linha do tempo ---------- */
+.linha-tempo { list-style: none; padding: 0; margin: 0; border-left: 3px solid var(--ouro); }
+.linha-tempo li { position: relative; padding: 0 0 1.6rem 1.6rem; }
+.linha-tempo li::before {
+  content: ''; position: absolute; left: -9px; top: 0.35rem; width: 15px; height: 15px;
+  border-radius: 50%; background: var(--preto); border: 3px solid var(--ouro);
+}
+.linha-tempo strong { display: block; font-size: 1.15rem; }
+
+/* ---------- Utilitários ---------- */
+.ondas { width: min(900px, 90%); opacity: 1; pointer-events: none; }
+.centro { text-align: center; }
+.mt-0 { margin-top: 0; } .mt-1 { margin-top: 1rem; } .mt-2 { margin-top: 2rem; } .mt-3 { margin-top: 3rem; }
+.mb-0 { margin-bottom: 0; } .mb-2 { margin-bottom: 2rem; }
+.lead { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.6; }
+.duas-colunas { display: grid; gap: clamp(2rem, 5vw, 4rem); grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px) { .duas-colunas { grid-template-columns: 1fr 1fr; } .duas-colunas--texto-largo { grid-template-columns: 1.3fr 1fr; } }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.pendente { background: #fff3c4; border: 2px dashed var(--ouro); border-radius: 8px; padding: 0.15em 0.5em; font-size: 0.9em; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

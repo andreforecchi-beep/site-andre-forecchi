@@ -1,0 +1,24 @@
+---
+// Cabeçalho das páginas internas: fundo ouro com gotas, título em pílula preta,
+// subtítulo com marca-texto branco (como nas páginas de abertura do portfólio).
+interface Props { titulo: string; subtitulo?: string; rotulo?: string; escuro?: boolean }
+const { titulo, subtitulo, rotulo, escuro = false } = Astro.props;
+---
+<section class:list={['cab', escuro ? 'secao--grafite gotas-ouro-sutil' : 'secao--ouro gotas']}>
+  <div class="container cab__dentro">
+    {rotulo && <span class="cab__rotulo">{rotulo}</span>}
+    <h1 class="cab__titulo"><span class:list={['pilula', escuro && 'pilula--ouro']}>{titulo}</span></h1>
+    {subtitulo && <p class="cab__sub"><span class:list={['marca-texto', escuro && 'marca-texto--preto']}>{subtitulo}</span></p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .cab { padding-block: clamp(3rem, 9vw, 6rem) clamp(2.5rem, 7vw, 4.5rem); }
+  .cab__dentro { position: relative; }
+  .cab__rotulo {
+    display: inline-block; font-family: var(--fonte-mao); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.4rem;
+  }
+  .cab__titulo { font-size: clamp(2.3rem, 7vw, 4.6rem); margin: 0; letter-spacing: -0.02em; }
+  .cab__sub { margin: 1.25rem 0 0; max-width: 62ch; font-size: clamp(1.02rem, 1.8vw, 1.2rem); }
+</style>

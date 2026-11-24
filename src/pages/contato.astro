@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import { artista } from '../data/artista';
+---
+<Base titulo="Contato" descricao="Contato de André Forecchi para contratações, parcerias, oficinas e projetos culturais.">
+  <Cabecalho
+    titulo="Contato"
+    subtitulo="Para contratações de espetáculos e shows, oficinas, sessões do Cine Bandolero, parcerias e projetos culturais."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container grade grade-3">
+      <a class="canal" href={`mailto:${artista.email}`}>
+        <span class="mao">e-mail</span>
+        <strong>{artista.email}</strong>
+      </a>
+      <a class="canal" href={`https://www.instagram.com/${artista.instagram}/`} target="_blank" rel="noopener">
+        <span class="mao">instagram</span>
+        <strong>@{artista.instagram}</strong>
+      </a>
+      <a class="canal" href={`https://www.instagram.com/${artista.instagramColetivo}/`} target="_blank" rel="noopener">
+        <span class="mao">coletivo</span>
+        <strong>@{artista.instagramColetivo}</strong>
+      </a>
+      {artista.whatsapp && (
+        <a class="canal" href={`https://wa.me/${artista.whatsapp}`} target="_blank" rel="noopener">
+          <span class="mao">whatsapp</span>
+          <strong>Enviar mensagem</strong>
+        </a>
+      )}
+    </div>
+  </section>
+
+  <section class="secao secao--preto">
+    <div class="container duas-colunas">
+      <div>
+        <h2 class="titulo-secao"><span class="pilula pilula--ouro">Para produtores</span></h2>
+        <p>
+          Espetáculos e shows disponíveis para circulação: <a href="/obras/capixaba-eu">Capixaba, eu?</a>,
+          <a href="/obras/homem-banda-um-manifesto">Homem-Banda, um manifesto</a> e <a href="/obras/mphb">MPHB</a>.
+          Fichas técnicas, fotos e vídeos estão nas páginas de cada obra.
+        </p>
+        <p>Também realizamos a oficina <a href="/obras/dissociando-o-corpo">Dissociando o Corpo</a> e sessões do <a href="/cine-bandolero">Cine Bandolero</a>.</p>
+      </div>
+      <img src="/img/marca/fone-pontilhado.webp" alt="" class="fone" loading="lazy" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .canal {
+    display: flex; flex-direction: column; gap: 0.25rem; text-decoration: none;
+    border: 2px solid var(--preto); border-radius: var(--raio); padding: 1.5rem;
+    transition: background 0.2s;
+    word-break: break-word;
+  }
+  .canal:hover { background: var(--ouro); }
+  .canal .mao { font-size: 1.6rem; }
+  .canal strong { font-size: 1.15rem; }
+  .secao--preto a { color: var(--ouro); }
+  .fone { max-height: 320px; width: auto; margin-inline: auto; }
+</style>

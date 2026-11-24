@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import CartaoObra from '../components/CartaoObra.astro';
+import { obras, nomesCategoria, type Categoria } from '../data/obras';
+
+const categorias = [...new Set(obras.map((o) => o.categoria))] as Categoria[];
+const ordenadas = [...obras].sort((a, b) => (b.ano.match(/\d{4}/)?.[0] ?? '0').localeCompare(a.ano.match(/\d{4}/)?.[0] ?? '0'));
+---
+<Base titulo="Acervo" descricao="Acervo completo de André Forecchi e do Coletivo OsViajero: espetáculos, filmes, webséries, podcasts, formações, livros e jogos.">
+  <Cabecalho
+    titulo="Acervo"
+    rotulo="produção cultural"
+    subtitulo="Mais de 60 projetos realizados: residências, oficinas, montagens e circulação de espetáculos, podcasts, webséries, documentários, livros, cineclubes e até jogos."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container">
+      <div class="estreito mb-2">
+        <p>
+          A produção cultural foi o caminho que André Forecchi encontrou para viabilizar as ideias que circulam no seu interior de artista.
+          No começo da trajetória, a produção era completamente independente. Hoje passa pelos projetos incentivados e pelos fundos de
+          cultura, como Funcultura, PNAB e SECULT-ES.
+        </p>
+        <p>
+          Aqui estão reunidas as obras autorais de André e as produções do Coletivo OsViajero de que ele participa. Cada ficha indica a autoria.
+        </p>
+      </div>
+
+      <div class="filtros" role="group" aria-label="Filtrar por linguagem">
+        <button class="filtro ativo" data-filtro="todas" aria-pressed="true">Todas ({obras.length})</button>
+        {categorias.map((c) => (
+          <button class="filtro" data-filtro={c} aria-pressed="false">
+            {nomesCategoria[c]} ({obras.filter((o) => o.categoria === c).length})
+          </button>
+        ))}
+      </div>
+
+      <div class="grade grade-3 mt-2" id="lista">
+        {ordenadas.map((o) => (
+          <div data-cat={o.categoria} class="item"><CartaoObra obra={o} /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const botoes = document.querySelectorAll<HTMLButtonElement>('.filtro');
+  const itens = document.querySelectorAll<HTMLElement>('.item');
+  botoes.forEach((b) =>
+    b.addEventListener('click', () => {
+      const f = b.dataset.filtro;
+      botoes.forEach((x) => { x.classList.toggle('ativo', x === b); x.setAttribute('aria-pressed', String(x === b)); });
+      itens.forEach((i) => { i.hidden = !(f === 'todas' || i.dataset.cat === f); });
+    })
+  );
+</script>
+
+<style>
+  .filtros { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .filtro {
+    font: inherit; font-weight: 600; font-size: 0.92rem; cursor: pointer;
+    border: 2px solid var(--preto); background: transparent; color: var(--preto);
+    padding: 0.35rem 0.95rem; border-radius: 999px; transition: background 0.2s;
+  }
+  .filtro:hover { background: var(--ouro); }
+  .filtro.ativo { background: var(--preto); color: var(--branco); }
+  .item { display: flex; }
+  .item > :global(.cartao) { width: 100%; }
+  .item[hidden] { display: none; }
+</style>

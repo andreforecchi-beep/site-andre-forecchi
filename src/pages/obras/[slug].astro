@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import Cabecalho from '../../components/Cabecalho.astro';
+import Video from '../../components/Video.astro';
+import CartaoObra from '../../components/CartaoObra.astro';
+import { obras, nomesCategoria, type Obra } from '../../data/obras';
+
+export function getStaticPaths() {
+  return obras.map((obra) => ({ params: { slug: obra.slug }, props: { obra } }));
+}
+
+const { obra } = Astro.props as { obra: Obra };
+const relacionadas = obras.filter((o) => o.categoria === obra.categoria && o.slug !== obra.slug).slice(0, 3);
+const meta = [
+  ['Linguagem', nomesCategoria[obra.categoria]],
+  ['Ano', obra.ano],
+  ['Formato', obra.formato],
+  ['Duração', obra.duracao],
+  ['Classificação', obra.classificacao],
+  ['Autoria', obra.autoria],
+  ['Situação', obra.status],
+].filter(([, v]) => v) as [string, string][];
+---
+<Base titulo={obra.titulo} descricao={obra.resumo} imagem={obra.capa?.src ?? obra.logo}>
+  <Cabecalho titulo={obra.titulo} rotulo={`${nomesCategoria[obra.categoria].toLowerCase()}${obra.ano ? ' · ' + obra.ano : ''}`} subtitulo={obra.resumo} />
+
+  <section class="secao secao--branco">
+    <div class="container duas-colunas duas-colunas--texto-largo obra__topo">
+      <div class="estreito">
+        {obra.texto.map((p, i) => <p class:list={[i === 0 && 'lead']}>{p}</p>)}
+        {obra.destaques && (
+          <>
+            <h2 class="h3 mt-2">Destaques</h2>
+            <ul class="etiquetas">{obra.destaques.map((d) => <li>{d}</li>)}</ul>
+          </>
+        )}
+        {obra.links && (
+          <div class="botoes mt-2">
+            {obra.links.map((l) => <a class="botao" href={l.url} target="_blank" rel="noopener">{l.rotulo} ↗</a>)}
+          </div>
+        )}
+      </div>
+      <aside>
+        {obra.logo && <img class="obra__logo" src={obra.logo} alt={`Marca de ${obra.titulo}`} />}
+        <dl class="ficha obra__meta">
+          {meta.map(([k, v]) => (<><dt>{k}</dt><dd>{v}</dd></>))}
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  {obra.videos && (
+    <section class="secao secao--preto">
+      <div class="container">
+        <h2 class="titulo-secao"><span class="pilula pilula--ouro">Assista</span></h2>
+        <div class:list={['grade', obra.videos.length > 1 ? 'grade-2' : 'video-unico']}>
+          {obra.videos.map((v) => <Video video={v} capa={v.youtube ? undefined : obra.capa?.src} />)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {(obra.capa || obra.galeria) && (
+    <section class="secao secao--ouro gotas">
+      <div class="container">
+        <h2 class="titulo-secao"><span class="pilula">Imagens</span></h2>
+        <div class="grade grade-2">
+          {[obra.capa, ...(obra.galeria ?? [])].filter(Boolean).map((g) => (
+            <figure class="figura">
+              <img src={g!.src} alt={g!.legenda ?? obra.titulo} loading="lazy" class="obra__foto" />
+              {(g!.legenda || g!.credito) && (
+                <figcaption><span class="marca-texto">{g!.legenda}{g!.credito && `. Foto: ${g!.credito}`}</span></figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  {obra.ficha && (
+    <section class="secao secao--branco">
+      <div class="container estreito">
+        <h2 class="titulo-secao"><span class="pilula">Ficha técnica</span></h2>
+        <dl class="ficha">
+          {obra.ficha.map(([k, v]) => (<><dt>{k}</dt><dd>{v}</dd></>))}
+        </dl>
+      </div>
+    </section>
+  )}
+
+  {relacionadas.length > 0 && (
+    <section class="secao secao--grafite gotas-ouro-sutil">
+      <div class="container">
+        <h2 class="titulo-secao"><span class="pilula pilula--ouro">Veja também</span></h2>
+        <div class="grade grade-3">{relacionadas.map((o) => <CartaoObra obra={o} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>
+
+<style>
+  .h3 { font-size: 1.2rem; }
+  .obra__topo { align-items: start; }
+  .obra__logo { max-width: 260px; max-height: 200px; width: auto; margin-bottom: 1.5rem; }
+  .obra__meta { background: var(--papel); border: 2px solid var(--preto); border-radius: var(--raio); padding: 1.25rem; grid-template-columns: auto 1fr; }
+  .obra__foto { max-height: 640px; object-fit: contain; background: rgba(0,0,0,0.06); }
+  .video-unico { max-width: 900px; }
+</style>

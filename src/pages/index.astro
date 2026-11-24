@@ -1,0 +1,137 @@
+---
+import Base from '../layouts/Base.astro';
+import Logo from '../components/Logo.astro';
+import CartaoObra from '../components/CartaoObra.astro';
+import Video from '../components/Video.astro';
+import { numeros } from '../data/artista';
+import { obras } from '../data/obras';
+
+const destaques = obras.filter((o) => o.destaque);
+
+const eixos = [
+  { href: '/artista', titulo: 'O Artista', texto: 'Quem é André Forecchi e os princípios que atravessam o trabalho.' },
+  { href: '/trajetoria', titulo: 'Trajetória', texto: 'Seis anos de estrada na Kombi Djanira pela América Latina.' },
+  { href: '/homem-banda', titulo: 'Homem-Banda', texto: 'O corpo como orquestra: a linguagem central da pesquisa.' },
+  { href: '/teatro', titulo: 'Teatro', texto: 'Espetáculos de rua e teatro documental.' },
+  { href: '/audiovisual', titulo: 'Audiovisual', texto: 'Documentários e webséries.' },
+  { href: '/cine-bandolero', titulo: 'Cine Bandolero', texto: 'Cineclube itinerante desde 2017.' },
+  { href: '/musica', titulo: 'Música', texto: 'MPHB e podcasts.' },
+  { href: '/acervo', titulo: 'Acervo', texto: 'Todas as obras, formações, livros e jogos em um só lugar.' },
+];
+---
+<Base>
+  <!-- Capa: mesma composição da capa do portfólio -->
+  <section class="capa">
+    <div class="capa__texto container">
+      <h1 class="sr-only">André Forecchi</h1>
+      <Logo largura="min(640px, 86vw)" />
+      <p class="capa__linha">Artista multidisciplinar · Espírito Santo</p>
+      <ul class="etiquetas etiquetas--cheias capa__tags">
+        <li>Homem-banda</li><li>Teatro</li><li>Audiovisual</li><li>Cineclube</li><li>Produção cultural</li>
+      </ul>
+    </div>
+    <img class="capa__plateia" src="/img/marca/plateia.webp" alt="" width="1600" height="379" />
+  </section>
+
+  <!-- Apresentação -->
+  <section class="secao secao--branco">
+    <div class="container duas-colunas">
+      <img src="/img/marca/artista-silhueta.webp" alt="Ilustração: silhueta de André tocando saxofone com bumbo e pratos nas costas, sobre linhas douradas" width="901" height="469" loading="lazy" />
+      <div>
+        <h2 class="titulo-secao"><span class="pilula">O Artista</span></h2>
+        <p class="lead">
+          Natural de Aracruz (ES), nascido no dia de Iemanjá, André Forecchi entendeu cedo a arte como um campo integral e diverso.
+          Hoje atua como escritor, compositor, produtor cultural e audiovisual, ator, cineclubista, oficineiro, multi-instrumentista
+          e, claro, homem-banda.
+        </p>
+        <a class="botao" href="/artista">Conhecer o artista →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Números -->
+  <section class="secao secao--ouro gotas">
+    <div class="container">
+      <span class="rotulo">A estrada em números</span>
+      <div class="numeros">
+        {numeros.map((n) => (
+          <div class="numero"><strong>{n.valor}</strong><span class="marca-texto">{n.rotulo}</span></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Homem-banda -->
+  <section class="secao secao--preto">
+    <div class="container duas-colunas">
+      <div>
+        <span class="rotulo">Eixo central da pesquisa</span>
+        <h2 class="titulo-secao"><span class="pilula pilula--ouro">Homem-Banda</span></h2>
+        <p>
+          Saxofone, bumbo, caixa, hi-hat, pratos, tamborins e voz, tocados ao mesmo tempo por cordas, roldanas e engenhocas, sem
+          tecnologia. A pesquisa começou de forma autodidata durante a vida na estrada e passou por cinco meses de estudo com
+          Santiago Moreno, em Nancy, na França.
+        </p>
+        <a class="botao botao--contorno" href="/homem-banda">O corpo como orquestra →</a>
+      </div>
+      <Video video={{ titulo: 'Mas que nada, no festival Chalon dans la Rue (França, 2023)', youtube: 'Iayk4bIzvtM' }} />
+    </div>
+  </section>
+
+  <!-- Obras em destaque -->
+  <section class="secao">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Obras em destaque</span></h2>
+      <div class="grade grade-3">
+        {destaques.map((o) => <CartaoObra obra={o} />)}
+      </div>
+      <p class="mt-2"><a class="botao botao--contorno" href="/acervo">Ver o acervo completo →</a></p>
+    </div>
+  </section>
+
+  <!-- Djanira -->
+  <section class="secao secao--ouro">
+    <div class="container duas-colunas">
+      <img src="/img/marca/djanira-mockup.webp" alt="A Kombi Djanira adesivada com a identidade visual do artista" width="1076" height="718" loading="lazy" class="arredondada" />
+      <div>
+        <h2 class="titulo-secao"><span class="pilula">CCIDjanira</span></h2>
+        <p><span class="marca-texto">
+          Djanira é a Kombi 2003 que foi casa dos gêmeos André e Davi por seis anos. Com o fim da vida itinerante, em 2023,
+          virou o Centro de Cultura Itinerante Djanira: transporte, logística e cenário dos espetáculos e do Cine Bandolero.
+        </span></p>
+        <a class="botao mt-1" href="/trajetoria#djanira">A história da Djanira →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navegue -->
+  <section class="secao secao--branco">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Navegue</span></h2>
+      <div class="grade grade-4">
+        {eixos.map((e) => (
+          <a class="cartao eixo" href={e.href}>
+            <div class="cartao__corpo">
+              <h3 class="cartao__titulo">{e.titulo}</h3>
+              <p class="cartao__texto">{e.texto}</p>
+              <span class="cartao__seta">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .capa { background: var(--branco); text-align: center; padding-top: clamp(3.5rem, 10vw, 7rem); overflow: hidden; }
+  .capa__texto { display: flex; flex-direction: column; align-items: center; }
+  .capa__linha { letter-spacing: 0.45em; text-transform: uppercase; font-size: clamp(0.75rem, 1.6vw, 1rem); margin: 1.5rem 0 1.25rem; padding-left: 0.45em; }
+  .capa__tags { justify-content: center; }
+  .capa__plateia { width: 100%; min-width: 900px; margin: clamp(2rem, 6vw, 4rem) auto 0; position: relative; left: 50%; transform: translateX(-50%); }
+  .arredondada { border-radius: var(--raio); }
+  .eixo { border-color: var(--preto); }
+  .eixo .cartao__titulo { font-size: 1.15rem; }
+  .eixo:hover { background: var(--ouro); }
+  .eixo:hover .cartao__texto { color: var(--preto); }
+</style>

@@ -1,0 +1,33 @@
+---
+// Bloco grande de uma obra (usado no topo das páginas de linguagem).
+import type { Obra } from '../data/obras';
+interface Props { obra: Obra; escuro?: boolean }
+const { obra, escuro = false } = Astro.props;
+---
+<section class:list={['secao', escuro ? 'secao--preto' : 'secao--branco']}>
+  <div class="container duas-colunas">
+    <div>
+      <span class="rotulo">{obra.ano} · {obra.formato}{obra.status && ` · ${obra.status}`}</span>
+      {obra.logo ? (
+        <img class="od__logo" src={obra.logo} alt={obra.titulo} loading="lazy" />
+      ) : null}
+      <h2 class:list={['titulo-secao', obra.logo && 'sr-only']}><span class:list={['pilula', escuro && 'pilula--ouro']}>{obra.titulo}</span></h2>
+      <p>{obra.texto[0]}</p>
+      {obra.destaques && (
+        <ul class="etiquetas mb-2">{obra.destaques.slice(0, 3).map((d) => <li>{d}</li>)}</ul>
+      )}
+      <a class:list={['botao', escuro && 'botao--contorno']} href={`/obras/${obra.slug}`}>Ficha completa, fotos e vídeos →</a>
+    </div>
+    {obra.capa && (
+      <figure class="figura">
+        <img src={obra.capa.src} alt={obra.capa.legenda ?? obra.titulo} loading="lazy" class="od__capa" />
+        {obra.capa.legenda && <figcaption>{obra.capa.legenda}{obra.capa.credito && `. Foto: ${obra.capa.credito}`}</figcaption>}
+      </figure>
+    )}
+  </div>
+</section>
+
+<style>
+  .od__logo { max-height: 140px; width: auto; margin-bottom: 1rem; }
+  .od__capa { aspect-ratio: 4 / 3; }
+</style>

@@ -1,0 +1,25 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+import ObraDestaque from '../components/ObraDestaque.astro';
+import CartaoObra from '../components/CartaoObra.astro';
+import { porCategoria } from '../data/obras';
+const todas = porCategoria('audiovisual');
+const grandes = todas.filter((o) => o.capa);
+const demais = todas.filter((o) => !o.capa);
+---
+<Base titulo="Audiovisual" descricao="Documentários e webséries de André Forecchi: Nós de nós dois, Aumbandan, De chapéu em chapéu e Me Leva ES.">
+  <Cabecalho
+    titulo="Audiovisual"
+    subtitulo="Documentários e webséries sobre estrada, fé, arte de rua e o próprio ofício de viver de arte."
+  />
+  {grandes.map((o, i) => <ObraDestaque obra={o} escuro={i % 2 === 1} />)}
+  {demais.length > 0 && (
+    <section class="secao secao--ouro gotas">
+      <div class="container">
+        <h2 class="titulo-secao"><span class="pilula">Outras séries</span></h2>
+        <div class="grade grade-3">{demais.map((o) => <CartaoObra obra={o} />)}</div>
+      </div>
+    </section>
+  )}
+</Base>

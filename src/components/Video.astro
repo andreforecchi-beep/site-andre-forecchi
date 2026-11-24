@@ -1,0 +1,76 @@
+---
+// Player leve: mostra a miniatura e só carrega o YouTube quando a pessoa clica.
+// Deixa o site rápido mesmo com muitos vídeos.
+import type { Video } from '../data/obras';
+interface Props { video: Video; capa?: string }
+const { video, capa } = Astro.props;
+
+let embed = '';
+let thumb = capa ?? '';
+let externo = video.url ?? '';
+if (video.youtube) {
+  embed = `https://www.youtube-nocookie.com/embed/${video.youtube}?autoplay=1&rel=0${video.inicio ? `&start=${video.inicio}` : ''}`;
+  thumb = thumb || `https://i.ytimg.com/vi/${video.youtube}/hqdefault.jpg`;
+  externo = `https://www.youtube.com/watch?v=${video.youtube}${video.inicio ? `&t=${video.inicio}s` : ''}`;
+} else if (video.playlist) {
+  embed = `https://www.youtube-nocookie.com/embed/videoseries?list=${video.playlist}&autoplay=1&rel=0`;
+  externo = `https://www.youtube.com/playlist?list=${video.playlist}`;
+}
+---
+<figure class="video">
+  {embed ? (
+    <button class="video__play" data-embed={embed} aria-label={`Assistir: ${video.titulo}`}>
+      {thumb ? <img src={thumb} alt="" loading="lazy" /> : <span class="video__vazio"></span>}
+      <span class="video__icone" aria-hidden="true">
+        <svg viewBox="0 0 68 48" width="68" height="48"><rect width="68" height="48" rx="12" fill="#000" /><path d="M27 14l18 10-18 10z" fill="#D8B40A" /></svg>
+      </span>
+      {video.playlist && <span class="video__selo">Playlist</span>}
+    </button>
+  ) : (
+    <a class="video__play" href={externo} target="_blank" rel="noopener">
+      {thumb ? <img src={thumb} alt="" loading="lazy" /> : <span class="video__vazio"></span>}
+      <span class="video__icone" aria-hidden="true">
+        <svg viewBox="0 0 68 48" width="68" height="48"><rect width="68" height="48" rx="12" fill="#000" /><path d="M27 14l18 10-18 10z" fill="#D8B40A" /></svg>
+      </span>
+    </a>
+  )}
+  <figcaption>
+    <span class="mao">▸</span> {video.titulo}
+    {externo && <a href={externo} target="_blank" rel="noopener" class="video__ext">abrir no site ↗</a>}
+  </figcaption>
+</figure>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('button.video__play').forEach((b) => {
+    b.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = b.dataset.embed!;
+      f.title = b.getAttribute('aria-label') ?? 'Vídeo';
+      f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      f.className = 'video__frame';
+      b.replaceWith(f);
+    });
+  });
+</script>
+
+<style is:global>
+  .video { margin: 0; }
+  .video__play, .video__frame {
+    position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; padding: 0;
+    border-radius: 12px; overflow: hidden; background: var(--preto); cursor: pointer;
+  }
+  .video__play img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s, opacity 0.3s; }
+  .video__play:hover img { transform: scale(1.03); opacity: 0.85; }
+  .video__vazio { position: absolute; inset: 0; background: var(--grafite) url('/img/marca/gotas-ouro.svg'); background-size: 200px; }
+  .video__icone { position: absolute; inset: 0; display: grid; place-items: center; }
+  .video__play:hover .video__icone svg rect { fill: #D8B40A; }
+  .video__play:hover .video__icone svg path { fill: #000; }
+  .video__selo {
+    position: absolute; top: 0.7rem; left: 0.7rem; background: var(--ouro); color: var(--preto);
+    font-weight: 700; font-size: 0.75rem; padding: 0.15rem 0.6rem; border-radius: 999px;
+  }
+  .video figcaption { font-size: 0.92rem; margin-top: 0.55rem; line-height: 1.45; }
+  .video figcaption .mao { font-size: 1.1rem; color: var(--ouro); }
+  .video__ext { font-size: 0.82rem; margin-left: 0.35rem; opacity: 0.75; white-space: nowrap; }
+</style>

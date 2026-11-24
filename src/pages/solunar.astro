@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import Cabecalho from '../components/Cabecalho.astro';
+
+const linhas = [
+  { titulo: 'Cultura e artes', itens: ['Residências artísticas', 'Pesquisa e criação', 'Teatro', 'Música', 'Artes visuais'] },
+  { titulo: 'Educação e formação', itens: ['Oficinas livres', 'Formação comunitária', 'Educação ambiental'] },
+  { titulo: 'Sustentabilidade', itens: ['Agrofloresta', 'Agricultura ecológica', 'Recuperação de áreas degradadas', 'Construções sustentáveis'] },
+  { titulo: 'Comunidade', itens: ['Governança colaborativa', 'Processos participativos', 'Redes de colaboração'] },
+];
+---
+<Base titulo="Solunar" descricao="Centro Cultural Rural Solunar, em Santa Teresa (ES): espaço cultural, comunitário e experimental da INOVATE, do qual André Forecchi é um dos fundadores.">
+  <Cabecalho
+    titulo="Solunar"
+    rotulo="Centro Cultural Rural"
+    subtitulo="Um laboratório vivo em Santa Teresa (ES), onde arte, cultura, natureza, educação e desenvolvimento comunitário convivem."
+  />
+
+  <section class="secao secao--branco">
+    <div class="container duas-colunas duas-colunas--texto-largo">
+      <div class="estreito">
+        <p class="lead">
+          André Forecchi é um dos fundadores do Centro Cultural Rural Solunar e dedica a ele boa parte do seu tempo.
+          O Solunar é um espaço coletivo e institucional da INOVATE, criado em parceria com a empresa capixaba Inorama.
+        </p>
+        <p>
+          Implantado em 2023, numa área rural de cerca de 14 hectares de Mata Atlântica, o espaço combina atividades culturais, práticas
+          agroecológicas, processos formativos e residências artísticas. É fundamentado em espiritualidade, cultura, holocracia,
+          sustentabilidade e inclusão, com um modelo de governança colaborativa em que todos os membros participam de forma ativa e autônoma.
+        </p>
+        <p>
+          Foi no Solunar que aconteceu a residência de criação de <a href="/obras/capixaba-eu">Capixaba, eu?</a>, com Henrique Fontes,
+          Luciana Camargo e André Forecchi.
+        </p>
+        <dl class="ficha mt-2">
+          <dt>Local</dt><dd>Santa Teresa, Espírito Santo</dd>
+          <dt>Área</dt><dd>Cerca de 14 hectares</dd>
+          <dt>Implantação</dt><dd>2023</dd>
+          <dt>Realização</dt><dd>INOVATE, em parceria com a Inorama</dd>
+        </dl>
+      </div>
+      <figure class="figura">
+        <img src="/img/solunar/vista-1.webp" alt="Vista das montanhas de Santa Teresa a partir do terreno do Solunar" loading="lazy" />
+        <figcaption>Vista do Solunar, Santa Teresa (ES)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="secao secao--ouro gotas">
+    <div class="container">
+      <h2 class="titulo-secao"><span class="pilula">Linhas de atuação</span></h2>
+      <div class="grade grade-4">
+        {linhas.map((l) => (
+          <article class="linha">
+            <h3>{l.titulo}</h3>
+            <ul>{l.itens.map((i) => <li>{i}</li>)}</ul>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="secao secao--branco">
+    <div class="container grade grade-2">
+      <img src="/img/solunar/terreno-1.webp" alt="Construção no terreno do Solunar" loading="lazy" class="foto" />
+      <img src="/img/solunar/terreno-2.webp" alt="Obras de implantação do Solunar com vista para as montanhas" loading="lazy" class="foto" />
+    </div>
+  </section>
+</Base>
+
+<style>
+  .linha { background: var(--branco); border: 2px solid var(--preto); border-radius: var(--raio); padding: 1.25rem 1.4rem; }
+  .linha h3 { font-size: 1.15rem; }
+  .linha ul { margin: 0; padding-left: 1.1rem; font-size: 0.95rem; }
+  .foto { border-radius: var(--raio); aspect-ratio: 4 / 3; object-fit: cover; width: 100%; }
+</style>

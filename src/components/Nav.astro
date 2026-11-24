@@ -1,0 +1,103 @@
+---
+import Logo from './Logo.astro';
+
+const itens = [
+  { href: '/artista', rotulo: 'O Artista' },
+  { href: '/trajetoria', rotulo: 'Trajetória' },
+  { href: '/homem-banda', rotulo: 'Homem-Banda' },
+  { href: '/teatro', rotulo: 'Teatro' },
+  { href: '/audiovisual', rotulo: 'Audiovisual' },
+  { href: '/cine-bandolero', rotulo: 'Cine Bandolero' },
+  { href: '/musica', rotulo: 'Música' },
+  { href: '/acervo', rotulo: 'Acervo' },
+  { href: '/solunar', rotulo: 'Solunar' },
+  { href: '/imprensa', rotulo: 'Imprensa' },
+  { href: '/contato', rotulo: 'Contato' },
+];
+
+const atual = Astro.url.pathname.replace(/\/$/, '') || '/';
+const ativo = (href: string) => atual === href || (href !== '/' && atual.startsWith(href + '/'));
+---
+<header class="nav">
+  <div class="nav__barra">
+    <a href="/" class="nav__marca" aria-label="Início">
+      <Logo cor="var(--branco)" largura="190px" />
+    </a>
+    <button class="nav__botao" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav id="menu" class="nav__menu" aria-label="Principal">
+    <ul>
+      {itens.map((i) => (
+        <li><a href={i.href} aria-current={ativo(i.href) ? 'page' : undefined}>{i.rotulo}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const botao = document.querySelector<HTMLButtonElement>('.nav__botao');
+  const menu = document.getElementById('menu');
+  botao?.addEventListener('click', () => {
+    const aberto = botao.getAttribute('aria-expanded') === 'true';
+    botao.setAttribute('aria-expanded', String(!aberto));
+    menu?.classList.toggle('aberto', !aberto);
+    document.body.classList.toggle('menu-aberto', !aberto);
+  });
+</script>
+
+<style>
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(0, 0, 0, 0.96);
+    color: var(--branco);
+    backdrop-filter: blur(6px);
+  }
+  .nav__barra {
+    display: flex; align-items: center; justify-content: space-between;
+    width: min(100% - 2.5rem, var(--largura)); margin-inline: auto;
+    min-height: var(--nav-h);
+  }
+  .nav__marca { display: flex; padding: 0.4rem 0; }
+  .nav__menu ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.15rem 1.1rem;
+  }
+  .nav__menu a {
+    display: block; padding: 0.35rem 0; text-decoration: none;
+    font-size: 0.86rem; font-weight: 600; color: rgba(255, 255, 255, 0.78);
+    white-space: nowrap; border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav__menu a:hover { color: var(--ouro); }
+  .nav__menu a[aria-current='page'] { color: var(--ouro); border-bottom-color: var(--ouro); }
+
+  .nav__botao { display: none; }
+
+  /* Desktop largo: tudo numa linha só */
+  @media (min-width: 1180px) {
+    .nav { display: flex; align-items: center; justify-content: space-between; padding-inline: max(1.25rem, calc((100% - var(--largura)) / 2)); }
+    .nav__barra { width: auto; margin: 0; }
+    .nav__menu ul { justify-content: flex-end; gap: 0 1rem; }
+  }
+  /* Tablet e notebook: menu inteiro visível em segunda linha */
+  @media (min-width: 768px) and (max-width: 1179px) {
+    .nav__menu { padding-bottom: 0.55rem; }
+    .nav__barra { justify-content: center; min-height: 52px; }
+  }
+  /* Celular: gaveta */
+  @media (max-width: 767px) {
+    .nav__botao {
+      display: flex; flex-direction: column; gap: 5px; background: none; border: 0; padding: 10px; cursor: pointer;
+    }
+    .nav__botao span { width: 26px; height: 3px; background: var(--branco); border-radius: 2px; transition: transform 0.2s, opacity 0.2s; }
+    .nav__botao[aria-expanded='true'] span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav__botao[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+    .nav__botao[aria-expanded='true'] span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .nav__menu { display: none; padding: 0.5rem 1.25rem 1.5rem; max-height: calc(100vh - var(--nav-h)); overflow-y: auto; }
+    .nav__menu.aberto { display: block; }
+    .nav__menu ul { flex-direction: column; align-items: flex-start; }
+    .nav__menu a { font-size: 1.15rem; padding: 0.55rem 0; }
+  }
+</style>
