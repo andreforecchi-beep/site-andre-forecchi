@@ -198,6 +198,7 @@ export const obras: Obra[] = [
       ['Composição e interpretação', 'André Forecchi'],
       ['Direção musical e arranjo percussivo', 'Gabriel Policarpo'],
       ['Direção de homem-banda', 'Santiago Moreno'],
+      ['Produção musical, mixagem e masterização', 'Gabriel Bebici'],
       ['Acessibilidade', 'Priscila Muzy'],
       ['Fomento', 'SECULT-ES, Edital 12/2025, Difusão Musical'],
     ],

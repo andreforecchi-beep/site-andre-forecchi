@@ -23,22 +23,24 @@ const conceitos = [
   },
 ];
 
-// Legendas vazias serão preenchidas por André.
+// Legendas geradas a partir das imagens (24/11/2026). Lugares e datas só quando aparecem na foto
+// ou no nome original do arquivo. André vai revisar e completar.
 const construcao = [
-  { src: '/img/homem-banda/construcao/construcao-1.webp', alt: 'Peças do primeiro protótipo espalhadas no chão: tambor, prato, tubos de metal e alças' },
-  { src: '/img/homem-banda/construcao/construcao-2.webp', alt: 'Estrutura do protótipo sendo montada sobre uma mesa de madeira, com ferramentas' },
-  { src: '/img/homem-banda/construcao/construcao-3.webp', alt: 'André ajustando o bumbo e os pratos do equipamento' },
+  { src: '/img/homem-banda/construcao/construcao-1.webp', legenda: 'Antes da montagem: tambor, prato, tamborim, tubos de alumínio e alças esperando virar um corpo só.', alt: 'Peças do protótipo espalhadas no chão: tambor, prato, tamborim, tubos de metal e alças' },
+  { src: '/img/homem-banda/construcao/construcao-2.webp', legenda: 'A estrutura tomando forma na bancada: alças de mochila, tubos e grampos de marceneiro.', alt: 'Estrutura do protótipo sendo montada sobre uma bancada de madeira, com ferramentas' },
+  { src: '/img/homem-banda/construcao/construcao-3.webp', legenda: 'Ajuste fino do bumbo e dos pratos, abril de 2023.', alt: 'André ajustando o bumbo e os pratos do equipamento' },
 ];
 
 const estrada = [
   { src: '/img/homem-banda/estrada/estrada-1.webp', legenda: 'O começo dos estudos com Santiago Moreno. Nancy, França (2023)' },
-  { src: '/img/homem-banda/estrada/estrada-3.webp', alt: 'André tocando homem-banda numa rua europeia, com o chapéu no chão' },
-  { src: '/img/homem-banda/estrada/estrada-2.webp', alt: 'André de bicicleta carregando o equipamento de homem-banda nas costas' },
+  { src: '/img/homem-banda/estrada/estrada-3.webp', legenda: 'Na calçada, com o case aberto no chão: o chapéu da vez. Abril de 2023.', alt: 'André tocando homem-banda numa rua europeia, com o case aberto no chão' },
+  { src: '/img/homem-banda/estrada/estrada-2.webp', legenda: 'A orquestra também anda de bicicleta.', alt: 'André de bicicleta carregando o equipamento de homem-banda nas costas, observado por um menino' },
   { src: '/img/homem-banda/nancy-ultimo-dia-santiago-2023.webp', legenda: 'O último dia com Santiago, cinco meses depois, com a bandeira do Espírito Santo (2023)' },
-  { src: '/img/homem-banda/estrada/estrada-4.webp', alt: 'André tocando numa praça em frente a uma estação de metrô' },
-  { src: '/img/homem-banda/palco/rua-europa.webp', alt: 'André tocando saxofone com o bumbo nas costas numa rua movimentada' },
+  { src: '/img/homem-banda/estrada/estrada-4.webp', legenda: 'Alexanderplatz, Berlim, setembro de 2023.', alt: 'André tocando na praça Alexanderplatz, em frente à placa do metrô' },
+  { src: '/img/homem-banda/palco/rua-europa.webp', legenda: 'Saxofone, bumbo, caixa e pratos no meio do vaivém de uma rua de pedestres.', alt: 'André tocando saxofone com o bumbo nas costas numa rua movimentada' },
   { src: '/img/homem-banda/galway-irlanda-2023.webp', legenda: 'Galway, Irlanda (2023)', credito: 'P. Russel' },
-  { src: '/img/homem-banda/estrada/estrada-6.webp', alt: 'Vários homens-banda juntos num palco' },
+  { src: '/img/homem-banda/estrada/estrada-6.webp', legenda: 'Quando os homens-banda se encontram, o palco fica pequeno.', alt: 'Vários homens-banda juntos num palco, com tubas, escadas e tambores' },
+  { src: '/img/homem-banda/estrada/estrada-7.webp', legenda: 'O bumbo leva a marca do OsViajero.', alt: 'André de chapéu, com o bumbo marcado OsViajero preso à mochila' },
 ];
 
 const palco = [
@@ -46,21 +48,21 @@ const palco = [
   { src: '/img/homem-banda/palco/festival-inverno-2026-1.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
   { src: '/img/homem-banda/palco/vitoria-das-artes-1.webp', legenda: 'Vitória das Artes', credito: 'Will Caldeira' },
   { src: '/img/homem-banda/palco/festival-inverno-2026-4.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
-  { src: '/img/homem-banda/palco/retrato-palco.webp', alt: 'André sorrindo no palco com o saxofone e os pratos' },
+  { src: '/img/homem-banda/palco/retrato-palco.webp', legenda: 'O riso no meio do show, quando todos os instrumentos encaixam.', alt: 'André sorrindo no palco com o saxofone e os pratos' },
   { src: '/img/homem-banda/palco/vitoria-das-artes-3.webp', legenda: 'Vitória das Artes', credito: 'Will Caldeira' },
   { src: '/img/homem-banda/palco/festival-inverno-2026-5.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
-  { src: '/img/homem-banda/palco/estandarte.webp', alt: 'André tocando ao lado de um estandarte azul bordado com as palavras Homem-Banda' },
+  { src: '/img/homem-banda/palco/estandarte.webp', legenda: 'Ao lado do estandarte bordado com o nome da arte.', alt: 'André tocando ao lado de um estandarte azul bordado com as palavras Homem-Banda' },
   { src: '/img/homem-banda/palco/vitoria-das-artes-2.webp', legenda: 'Vitória das Artes', credito: 'Will Caldeira' },
   { src: '/img/homem-banda/manifesto-fenatevi-2024.webp', legenda: 'Homem-Banda, um manifesto no FENATEVI, Vitória (2024)', credito: 'Vitor Cavatti' },
 ];
 
 const oficinas = [
-  { src: '/img/homem-banda/formacao/oficina-1.webp', alt: 'Participantes montando o equipamento de homem-banda com ferramentas' },
-  { src: '/img/homem-banda/formacao/oficina-3.webp', alt: 'Mãos amarrando cordas no mecanismo de um tambor' },
-  { src: '/img/homem-banda/formacao/oficina-2.webp', alt: 'André e participantes testando um protótipo de homem-banda' },
-  { src: '/img/homem-banda/formacao/oficina-4.webp', alt: 'Participantes experimentando os equipamentos com saxofones' },
-  { src: '/img/homem-banda/formacao/oficina-5.webp', alt: 'Grupo tocando junto ao final da oficina' },
-  { src: '/img/homem-banda/formacao/oficina-6.webp', alt: 'Foto do grupo de participantes da oficina na rua' },
+  { src: '/img/homem-banda/formacao/oficina-1.webp', legenda: 'Mão na massa: regulando o batedor que aciona o bumbo.', alt: 'Participantes montando o mecanismo do bumbo com ferramentas' },
+  { src: '/img/homem-banda/formacao/oficina-3.webp', legenda: 'Cordas, roldanas e paciência: a parte fina da construção.', alt: 'Mãos amarrando cordas no mecanismo de um tambor' },
+  { src: '/img/homem-banda/formacao/oficina-2.webp', legenda: 'O primeiro teste de um protótipo recém-montado.', alt: 'André e participantes testando um protótipo de homem-banda' },
+  { src: '/img/homem-banda/formacao/oficina-4.webp', legenda: 'Equipamento nas costas, hora de tocar.', alt: 'Participantes experimentando os equipamentos com saxofones' },
+  { src: '/img/homem-banda/formacao/oficina-5.webp', legenda: 'Saxofones, violão e percussão juntos no fim do dia.', alt: 'Grupo tocando junto ao final da oficina' },
+  { src: '/img/homem-banda/formacao/oficina-6.webp', legenda: 'A turma reunida na calçada.', alt: 'Foto do grupo de participantes da oficina na rua' },
 ];
 ---
 <Base titulo="Homem-Banda" descricao="A pesquisa de André Forecchi em homem-banda: do primeiro protótipo construído na estrada à residência com Santiago Moreno na França, aos palcos e à primeira formação em homem e mulher-banda do mundo.">
@@ -113,7 +115,7 @@ const oficinas = [
       <div class="mt-2"><Galeria fotos={construcao} /></div>
       <div class="grade grade-2 mt-2">
         <Video video={{ titulo: 'Tico-Tico no Fubá, de Zequinha Abreu, arranjo para homem-banda (Galway, 2023). FLPB Produções', youtube: '5ykTeERrUb0' }} />
-        <Video video={{ titulo: 'Em Movimento, TV Gazeta (2024): "Capixaba vira homem-banda e toca 9 instrumentos sozinho"', url: 'https://globoplay.globo.com/v/12515654/' }} capa="/img/imprensa/p25_726.webp" />
+        <Video video={{ titulo: 'Construção de equipamentos na 1ª Formação Internacional de Mulher e Homem-Banda', youtube: 'DVKS5urexK8' }} />
       </div>
     </div>
   </section>
@@ -165,6 +167,7 @@ const oficinas = [
       <div class="grade grade-2 mt-2">
         <Video video={{ titulo: 'MPHB, Música Popular de Homem-Banda: teaser na CEEMTI Monsenhor Guilherme, Aracruz. Créditos: Bruno Cabús', youtube: 'JcRUNq6Z794' }} />
         <Video video={{ titulo: 'Homem-Banda, o Show (hoje "Homem-Banda, um manifesto"): íntegra na EEEFM Zumbi dos Palmares, Serra (2026)', youtube: 'E1i5VefTIgU' }} />
+        <Video video={{ titulo: 'Em Movimento, TV Gazeta (2024): "Capixaba vira homem-banda e toca 9 instrumentos sozinho"', url: 'https://globoplay.globo.com/v/12515654/' }} capa="/img/imprensa/p25_726.webp" />
       </div>
     </div>
   </section>
@@ -202,8 +205,8 @@ const oficinas = [
       </div>
       <div class="mt-3"><Galeria fotos={oficinas} /></div>
       <div class="grade grade-2 mt-2">
-        <Video video={{ titulo: '1ª Formação Internacional de Mulher e Homem-Banda: vídeo institucional', youtube: 'DVKS5urexK8' }} />
         <Video video={{ titulo: 'TVE: "A arte do homem-banda vai ser ensinada em oficina"', youtube: 'sEXIPcku9gw' }} />
+        <Video video={{ titulo: 'TVE Revista, 19/11/2025: matéria sobre a formação', youtube: 'pPo1mo3QeCE', inicio: 190 }} />
       </div>
     </div>
   </section>

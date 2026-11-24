@@ -141,7 +141,7 @@ export const estradaRecente = [
   { cidade: 'Presidente Kennedy', oque: 'De chapéu em chapéu' },
   { cidade: 'Cachoeiro de Itapemirim', oque: 'De chapéu em chapéu' },
   { cidade: 'Vila Velha', oque: 'De chapéu em chapéu' },
-  { cidade: 'Linhares', oque: 'De chapéu em chapéu' },
+  { cidade: 'Linhares', oque: 'Cine Bandolero em escolas e praça de Interlagos; De chapéu em chapéu' },
   { cidade: 'São Mateus', oque: 'De chapéu em chapéu' },
   { cidade: 'Itaúnas', oque: 'De chapéu em chapéu' },
   { cidade: 'Santa Teresa', oque: 'Centro Cultural Rural Solunar' },
