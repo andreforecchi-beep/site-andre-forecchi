@@ -3,11 +3,12 @@ import Base from '../layouts/Base.astro';
 import Logo from '../components/Logo.astro';
 import CartaoObra from '../components/CartaoObra.astro';
 import Video from '../components/Video.astro';
-import { numeros } from '../data/artista';
+import Estrada from '../components/Estrada.astro';
+import { numeros, artista } from '../data/artista';
 import { obras } from '../data/obras';
 
 // Ordem dos destaques: o homem-banda vem primeiro (foco do site, pedido de André em 23/11/2026).
-const ordemDestaques = ['homem-banda-um-manifesto', 'mphb', 'homem-banda-a-formacao', 'capixaba-eu', 'nos-de-nos-dois', 'aumbandan'];
+const ordemDestaques = ['homem-banda-um-manifesto', 'mphb', 'corpoar', 'homem-banda-a-formacao', 'capixaba-eu', 'nos-de-nos-dois'];
 const destaques = ordemDestaques.map((s) => obras.find((o) => o.slug === s)!).filter(Boolean);
 
 const eixos = [
@@ -31,6 +32,11 @@ const eixos = [
       <ul class="etiquetas etiquetas--cheias capa__tags">
         <li>Homem-banda</li><li>Teatro</li><li>Audiovisual</li><li>Cineclube</li><li>Produção cultural</li>
       </ul>
+      <p class="capa__redes">
+        <a href={`https://www.instagram.com/${artista.instagram}/`} target="_blank" rel="noopener">@{artista.instagram}</a>
+        <span aria-hidden="true">·</span>
+        <a href={`https://www.instagram.com/${artista.instagramColetivo}/`} target="_blank" rel="noopener">@{artista.instagramColetivo}</a>
+      </p>
     </div>
     <img class="capa__plateia" src="/img/marca/plateia.webp" alt="" width="1600" height="379" />
   </section>
@@ -120,6 +126,8 @@ const eixos = [
     </div>
   </section>
 
+  <Estrada />
+
   <!-- Navegue -->
   <section class="secao secao--branco">
     <div class="container">
@@ -144,6 +152,9 @@ const eixos = [
   .capa__texto { display: flex; flex-direction: column; align-items: center; }
   .capa__linha { letter-spacing: 0.45em; text-transform: uppercase; font-size: clamp(0.75rem, 1.6vw, 1rem); margin: 1.5rem 0 1.25rem; padding-left: 0.45em; }
   .capa__tags { justify-content: center; }
+  .capa__redes { margin: 1.1rem 0 0; font-weight: 700; display: flex; gap: 0.6rem; justify-content: center; }
+  .capa__redes a { text-decoration: none; border-bottom: 2px solid var(--ouro); }
+  .capa__redes a:hover { background: var(--ouro); }
   .capa__plateia { width: 100%; min-width: 900px; margin: clamp(2rem, 6vw, 4rem) auto 0; position: relative; left: 50%; transform: translateX(-50%); }
   .arredondada { border-radius: var(--raio); }
   .hb-num { color: var(--ouro); }

@@ -5,6 +5,7 @@ import ObraDestaque from '../components/ObraDestaque.astro';
 import CartaoObra from '../components/CartaoObra.astro';
 import { porSlug, porCategoria } from '../data/obras';
 const mphb = porSlug('mphb')!;
+const corpoar = porSlug('corpoar')!;
 const podcasts = porCategoria('podcast');
 ---
 <Base titulo="Música" descricao="MPHB, Música Popular de Homem-Banda: show de André Forecchi com samba, baião, bossa-nova, choro e autorais. Podcasts do OsViajero.">
@@ -13,6 +14,7 @@ const podcasts = porCategoria('podcast');
     subtitulo="A pesquisa musical gira em torno do homem-banda, com foco na performance instrumental e no repertório brasileiro."
   />
   <ObraDestaque obra={mphb} />
+  <ObraDestaque obra={corpoar} escuro />
 
   <section class="secao secao--ouro gotas">
     <div class="container estreito">

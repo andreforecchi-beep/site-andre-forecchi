@@ -20,7 +20,7 @@ const { obra, escuro = false } = Astro.props;
     </div>
     {obra.capa && (
       <figure class="figura">
-        <img src={obra.capa.src} alt={obra.capa.legenda ?? obra.titulo} loading="lazy" class="od__capa" />
+        <img src={obra.capa.src} alt={obra.capa.legenda ?? obra.titulo} loading="lazy" class:list={["od__capa", obra.capa.inteira && "od__capa--inteira"]} />
         {obra.capa.legenda && <figcaption>{obra.capa.legenda}{obra.capa.credito && `. Foto: ${obra.capa.credito}`}</figcaption>}
       </figure>
     )}
@@ -30,4 +30,5 @@ const { obra, escuro = false } = Astro.props;
 <style>
   .od__logo { max-height: 140px; width: auto; margin-bottom: 1rem; }
   .od__capa { aspect-ratio: 4 / 3; }
+  .od__capa--inteira { aspect-ratio: 1; max-width: 520px; margin-inline: auto; }
 </style>

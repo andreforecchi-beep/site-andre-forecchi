@@ -130,3 +130,24 @@ export const linhaDoTempo = [
     ],
   },
 ];
+
+// A ESTRADA CONTINUA — cidades com trabalho realizado de 2024 a 2026 (só o que está confirmado no workspace).
+// Para atualizar: acrescente a cidade ou o "oque" quando um projeto novo acontecer.
+export const estradaRecente = [
+  { cidade: 'Serra', oque: 'Cine Bandolero em escolas e praças; homem-banda na EEEFM Zumbi dos Palmares' },
+  { cidade: 'Aracruz', oque: 'Cine Bandolero em escolas e aldeias Tupinikim; MPHB e Homem-Banda, um manifesto' },
+  { cidade: 'Vitória', oque: 'FENATEVI; oficina maker da Formação no Lacarta Circo' },
+  { cidade: 'Domingos Martins', oque: 'MPHB no Festival de Inverno' },
+  { cidade: 'Presidente Kennedy', oque: 'De chapéu em chapéu' },
+  { cidade: 'Cachoeiro de Itapemirim', oque: 'De chapéu em chapéu' },
+  { cidade: 'Vila Velha', oque: 'De chapéu em chapéu' },
+  { cidade: 'Linhares', oque: 'De chapéu em chapéu' },
+  { cidade: 'São Mateus', oque: 'De chapéu em chapéu' },
+  { cidade: 'Itaúnas', oque: 'De chapéu em chapéu' },
+  { cidade: 'Santa Teresa', oque: 'Centro Cultural Rural Solunar' },
+];
+
+export const proximasParadas = [
+  { cidade: 'Aracruz, Serra e Divino de São Lourenço', oque: 'circulação de Capixaba, eu? (2026 e 2027)' },
+  { cidade: 'Aracruz', oque: 'sessões do Cine Bandolero com estudantes do IFES e da EEEFM Misael Pinto Netto (2026 e 2027)' },
+];

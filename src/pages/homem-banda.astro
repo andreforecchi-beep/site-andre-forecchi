@@ -2,10 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Cabecalho from '../components/Cabecalho.astro';
 import Video from '../components/Video.astro';
+import Galeria from '../components/Galeria.astro';
 import CartaoObra from '../components/CartaoObra.astro';
 import { porSlug } from '../data/obras';
 
-const relacionados = ['homem-banda-um-manifesto', 'mphb', 'homem-banda-a-formacao', 'dissociando-o-corpo'].map((s) => porSlug(s)!);
+const relacionados = ['homem-banda-um-manifesto', 'mphb', 'corpoar', 'homem-banda-a-formacao', 'dissociando-o-corpo'].map((s) => porSlug(s)!);
 
 const conceitos = [
   {
@@ -22,47 +23,102 @@ const conceitos = [
   },
 ];
 
-const galeria = [
-  { src: '/img/homem-banda/nancy-inicio-estudos-2023.webp', legenda: 'O começo dos estudos com Santiago Moreno. Nancy, França (2023)' },
-  { src: '/img/homem-banda/nancy-ultimo-dia-santiago-2023.webp', legenda: 'O último dia juntos, cinco meses depois, com a bandeira do Espírito Santo. Nancy (2023)' },
-  { src: '/img/homem-banda/galway-irlanda-2023.webp', legenda: 'Pesquisa de arte e performance de rua em Galway, Irlanda (2023). Foto: P. Russel' },
-  { src: '/img/homem-banda/chalon-dans-la-rue-2023.webp', legenda: 'Apresentação no festival Chalon dans la Rue, França (2023)' },
-  { src: '/img/homem-banda/palomino-colombia-2022.webp', legenda: 'Gravação de clipe à beira do rio Palomino, Colômbia (2022). Foto: Dolores M.' },
-  { src: '/img/homem-banda/manifesto-fenatevi-2024.webp', legenda: 'Homem-Banda, um manifesto no FENATEVI, Vitória (2024). Foto: Vitor Cavatti' },
+// Legendas vazias serão preenchidas por André.
+const construcao = [
+  { src: '/img/homem-banda/construcao/construcao-1.webp', alt: 'Peças do primeiro protótipo espalhadas no chão: tambor, prato, tubos de metal e alças' },
+  { src: '/img/homem-banda/construcao/construcao-2.webp', alt: 'Estrutura do protótipo sendo montada sobre uma mesa de madeira, com ferramentas' },
+  { src: '/img/homem-banda/construcao/construcao-3.webp', alt: 'André ajustando o bumbo e os pratos do equipamento' },
+];
+
+const estrada = [
+  { src: '/img/homem-banda/estrada/estrada-1.webp', legenda: 'O começo dos estudos com Santiago Moreno. Nancy, França (2023)' },
+  { src: '/img/homem-banda/estrada/estrada-3.webp', alt: 'André tocando homem-banda numa rua europeia, com o chapéu no chão' },
+  { src: '/img/homem-banda/estrada/estrada-2.webp', alt: 'André de bicicleta carregando o equipamento de homem-banda nas costas' },
+  { src: '/img/homem-banda/nancy-ultimo-dia-santiago-2023.webp', legenda: 'O último dia com Santiago, cinco meses depois, com a bandeira do Espírito Santo (2023)' },
+  { src: '/img/homem-banda/estrada/estrada-4.webp', alt: 'André tocando numa praça em frente a uma estação de metrô' },
+  { src: '/img/homem-banda/palco/rua-europa.webp', alt: 'André tocando saxofone com o bumbo nas costas numa rua movimentada' },
+  { src: '/img/homem-banda/galway-irlanda-2023.webp', legenda: 'Galway, Irlanda (2023)', credito: 'P. Russel' },
+  { src: '/img/homem-banda/estrada/estrada-6.webp', alt: 'Vários homens-banda juntos num palco' },
+];
+
+const palco = [
+  { src: '/img/homem-banda/palco/festival-inverno-2026-3.webp', legenda: 'MPHB no Festival de Inverno de Domingos Martins (2026)' },
+  { src: '/img/homem-banda/palco/festival-inverno-2026-1.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
+  { src: '/img/homem-banda/palco/vitoria-das-artes-1.webp', legenda: 'Vitória das Artes', credito: 'Will Caldeira' },
+  { src: '/img/homem-banda/palco/festival-inverno-2026-4.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
+  { src: '/img/homem-banda/palco/retrato-palco.webp', alt: 'André sorrindo no palco com o saxofone e os pratos' },
+  { src: '/img/homem-banda/palco/vitoria-das-artes-3.webp', legenda: 'Vitória das Artes', credito: 'Will Caldeira' },
+  { src: '/img/homem-banda/palco/festival-inverno-2026-5.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
+  { src: '/img/homem-banda/palco/estandarte.webp', alt: 'André tocando ao lado de um estandarte azul bordado com as palavras Homem-Banda' },
+  { src: '/img/homem-banda/palco/vitoria-das-artes-2.webp', legenda: 'Vitória das Artes', credito: 'Will Caldeira' },
+  { src: '/img/homem-banda/manifesto-fenatevi-2024.webp', legenda: 'Homem-Banda, um manifesto no FENATEVI, Vitória (2024)', credito: 'Vitor Cavatti' },
+];
+
+const oficinas = [
+  { src: '/img/homem-banda/formacao/oficina-1.webp', alt: 'Participantes montando o equipamento de homem-banda com ferramentas' },
+  { src: '/img/homem-banda/formacao/oficina-3.webp', alt: 'Mãos amarrando cordas no mecanismo de um tambor' },
+  { src: '/img/homem-banda/formacao/oficina-2.webp', alt: 'André e participantes testando um protótipo de homem-banda' },
+  { src: '/img/homem-banda/formacao/oficina-4.webp', alt: 'Participantes experimentando os equipamentos com saxofones' },
+  { src: '/img/homem-banda/formacao/oficina-5.webp', alt: 'Grupo tocando junto ao final da oficina' },
+  { src: '/img/homem-banda/formacao/oficina-6.webp', alt: 'Foto do grupo de participantes da oficina na rua' },
 ];
 ---
-<Base titulo="Homem-Banda" descricao="A pesquisa de André Forecchi em homem-banda: corpo como orquestra, dissociação corporal e cultura maker. Residência com Santiago Moreno na França.">
+<Base titulo="Homem-Banda" descricao="A pesquisa de André Forecchi em homem-banda: do primeiro protótipo construído na estrada à residência com Santiago Moreno na França, aos palcos e à primeira formação em homem e mulher-banda do mundo.">
   <Cabecalho
     titulo="Homem-Banda"
     rotulo="o corpo como orquestra"
-    subtitulo="Um único performer executa vários instrumentos ao mesmo tempo, integrando corpo, mecânica, ritmo, coordenação motora e performance."
+    subtitulo="Um único performer toca vários instrumentos ao mesmo tempo, integrando corpo, mecânica, ritmo, coordenação motora e performance."
   />
 
+  <!-- Como começou -->
   <section class="secao secao--branco">
     <div class="container duas-colunas duas-colunas--texto-largo">
       <div class="estreito">
         <p class="lead">
-          No meio da residência artística itinerante, o caminho de André encontrou a arte singular do homem-banda e o fazer cultural
-          tomou outro rumo.
+          Em 2017, André e o irmão gêmeo Davi saíram do Espírito Santo numa Kombi, a Djanira, para viver de arte de rua.
+          Foram seis anos morando na estrada, de cidade em cidade e de país em país, sem endereço fixo e sem salário.
         </p>
         <p>
-          A pesquisa começou em 2020, de forma autodidata: observando artistas de outros países, construindo os próprios equipamentos e
-          testando tudo em apresentações de rua. Ele estudou sozinho, à exaustão, a execução simultânea de instrumentos através de
-          cordas, roldanas e engenhocas.
+          É isso que chamamos de residência artística itinerante: a criação acontecia em trânsito, e cada praça era palco, sala de ensaio
+          e bilheteria ao mesmo tempo. O que pagava a gasolina e a comida era o chapéu passado depois de cada apresentação.
         </p>
         <p>
-          O homem-banda abriu novas portas. Depois de se apresentar no Espírito Santo, Goiás, Santa Catarina e Rio Grande do Norte (2022),
-          e no Peru, Equador, Colômbia e Venezuela (2023), André recebeu a proposta de estudar por cinco meses com Santiago Moreno, na
-          França, tido como o melhor homem-banda do mundo.
+          Foi nessa estrada, em 2020, que André encontrou o homem-banda. Começou sozinho: observou artistas de outros países, estudou
+          à exaustão a execução simultânea de instrumentos e construiu o primeiro protótipo com peças de bateria, tubos de metal, cordas e
+          roldanas. Cada versão era testada na rua, na frente de quem passasse.
         </p>
-        <p>Hoje ministra oficinas, atua em espetáculos e se apresenta em diversos lugares com a sua criação.</p>
+        <p>
+          Depois de se apresentar no Espírito Santo, em Goiás, Santa Catarina e Rio Grande do Norte (2022), e no Peru, Equador, Colômbia e
+          Venezuela (2023), veio o convite para estudar cinco meses com Santiago Moreno, na França, tido como o melhor homem-banda do mundo.
+        </p>
         <h2 class="h3 mt-2">Instrumentos</h2>
-        <ul class="etiquetas">{['Saxofone', 'Bumbo', 'Caixa', 'Hi-hat', 'Pratos', 'Tamborins', 'Voz'].map((i) => <li>{i}</li>)}</ul>
+        <ul class="etiquetas">{['Saxofone', 'Bumbo', 'Caixa', 'Hi-hat', 'Pratos', 'Tamborins', 'Apito', 'Sineta', 'Voz'].map((i) => <li>{i}</li>)}</ul>
       </div>
-      <img src="/img/marca/andre-recorte.webp" alt="André Forecchi com o bumbo e os pratos do homem-banda nas costas" width="1280" height="853" loading="lazy" />
+      <figure class="figura">
+        <img src="/img/homem-banda/estrada/palomino-colombia-2022.webp" alt="André tocando saxofone com o homem-banda nas costas à beira de um rio, na Colômbia" class="foto-alta" />
+        <figcaption>Gravação à beira do rio Palomino, Colômbia (2022). Foto: Dolores M.</figcaption>
+      </figure>
     </div>
   </section>
 
+  <!-- Do protótipo à rua -->
+  <section class="secao secao--ouro gotas">
+    <div class="container">
+      <span class="mao">o primeiro protótipo</span>
+      <h2 class="titulo-secao"><span class="pilula">Do protótipo à rua</span></h2>
+      <p class="estreito"><span class="marca-texto">
+        Um equipamento de homem-banda não se compra pronto. Bumbo, pratos e tamborins são presos ao corpo e acionados por cordas,
+        roldanas e mecanismos feitos à mão. Cada peça é desenhada, montada, testada na rua, desmontada e refeita.
+      </span></p>
+      <div class="mt-2"><Galeria fotos={construcao} /></div>
+      <div class="grade grade-2 mt-2">
+        <Video video={{ titulo: 'Tico-Tico no Fubá, de Zequinha Abreu, arranjo para homem-banda (Galway, 2023). FLPB Produções', youtube: '5ykTeERrUb0' }} />
+        <Video video={{ titulo: 'Em Movimento, TV Gazeta (2024): "Capixaba vira homem-banda e toca 9 instrumentos sozinho"', url: 'https://globoplay.globo.com/v/12515654/' }} capa="/img/imprensa/p25_726.webp" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Conceitos -->
   <section class="secao secao--preto">
     <div class="container">
       <h2 class="titulo-secao"><span class="pilula pilula--ouro">Conceitos</span></h2>
@@ -77,67 +133,77 @@ const galeria = [
     </div>
   </section>
 
-  <section class="secao secao--ouro gotas">
-    <div class="container duas-colunas">
-      <div>
-        <span class="rotulo">Residência internacional · 2023</span>
-        <h2 class="titulo-secao"><span class="pilula">Nancy, França</span></h2>
-        <p><span class="marca-texto">
-          Cinco meses de mentoria com Santiago Moreno, dedicados à dissociação rítmica, à construção de protótipos, à metodologia
-          e à aplicação teatral do homem-banda.
-        </span></p>
-        <p><span class="marca-texto">
-          Artistas importantes para a pesquisa: Santiago Moreno (França/Argentina), Martin Orkestar e Karl Orquesta.
-        </span></p>
-      </div>
-      <Video video={{ titulo: 'Mas que nada, no festival Chalon dans la Rue (França, 2023)', youtube: 'Iayk4bIzvtM' }} />
-    </div>
-  </section>
-
+  <!-- Residência na França e estrada europeia -->
   <section class="secao secao--branco">
     <div class="container">
-      <h2 class="titulo-secao"><span class="pilula">Registros</span></h2>
-      <div class="grade grade-3">
-        {galeria.map((g) => (
-          <figure class="figura">
-            <img src={g.src} alt={g.legenda} loading="lazy" class="foto" />
-            <figcaption>{g.legenda}</figcaption>
-          </figure>
-        ))}
+      <div class="duas-colunas">
+        <div>
+          <span class="rotulo">Residência internacional · 2023</span>
+          <h2 class="titulo-secao"><span class="pilula">Nancy, França</span></h2>
+          <p>
+            Cinco meses de mentoria com Santiago Moreno, dedicados à dissociação rítmica, à construção de protótipos, à metodologia e à
+            aplicação teatral do homem-banda. Da França, a pesquisa seguiu para as ruas: o festival Chalon dans la Rue e as calçadas de
+            Galway, na Irlanda.
+          </p>
+          <p>Artistas importantes para a pesquisa: Santiago Moreno (França/Argentina), Martin Orkestar e Karl Orquesta.</p>
+        </div>
+        <Video video={{ titulo: 'Mas que nada, no festival Chalon dans la Rue (França, 2023)', youtube: 'Iayk4bIzvtM' }} />
       </div>
-      <div class="grade grade-2 mt-3">
-        <Video video={{ titulo: 'Tico-Tico no Fubá, de Zequinha Abreu, arranjo para homem-banda (Galway, 2023). FLPB Produções', youtube: '5ykTeERrUb0' }} />
-        <Video video={{ titulo: 'Em Movimento, TV Gazeta (2024): "Capixaba vira homem-banda e toca 9 instrumentos sozinho"', url: 'https://globoplay.globo.com/v/12515654/' }} capa="/img/imprensa/p25_726.webp" />
-      </div>
+      <div class="mt-3"><Galeria fotos={estrada} /></div>
     </div>
   </section>
 
+  <!-- No palco -->
   <section class="secao secao--preto">
     <div class="container">
       <h2 class="titulo-secao"><span class="pilula pilula--ouro">No palco</span></h2>
-      <div class="grade grade-2">
+      <p class="estreito">
+        Hoje a pesquisa vira show, o <a href="/obras/mphb">MPHB</a>, e espetáculo, o
+        <a href="/obras/homem-banda-um-manifesto">Homem-Banda, um manifesto</a>, e segue para o disco: o EP <a href="/obras/corpoar">Corpoar</a>.
+      </p>
+      <div class="mt-2"><Galeria fotos={palco} /></div>
+      <div class="grade grade-2 mt-2">
         <Video video={{ titulo: 'MPHB, Música Popular de Homem-Banda: teaser na CEEMTI Monsenhor Guilherme, Aracruz. Créditos: Bruno Cabús', youtube: 'JcRUNq6Z794' }} />
         <Video video={{ titulo: 'Homem-Banda, o Show (hoje "Homem-Banda, um manifesto"): íntegra na EEEFM Zumbi dos Palmares, Serra (2026)', youtube: 'E1i5VefTIgU' }} />
       </div>
     </div>
   </section>
 
-  <section class="secao secao--ouro gotas">
-    <div class="container duas-colunas">
-      <div>
-        <span class="rotulo">2025 · Inédita no Brasil e no mundo</span>
-        <h2 class="titulo-secao"><span class="pilula">Homem-Banda, a Formação</span></h2>
-        <p><span class="marca-texto">
-          A primeira formação estruturada em homem-banda e mulher-banda já realizada, gratuita e híbrida, com oficineiros do Brasil,
-          do Japão e da França. Deu início à articulação do primeiro grupo associativo de homens e mulheres-banda do Brasil.
-        </span></p>
-        <a class="botao mt-1" href="/obras/homem-banda-a-formacao">Conhecer a formação →</a>
+  <!-- Formador -->
+  <section class="secao secao--ouro gotas" id="formacao">
+    <div class="container">
+      <span class="mao">o homem-banda como formador</span>
+      <h2 class="titulo-secao"><span class="pilula">Oficinas e formação</span></h2>
+      <div class="duas-colunas duas-colunas--texto-largo">
+        <div>
+          <p><span class="marca-texto">
+            O que André aprendeu sozinho na estrada virou método e passou a ser ensinado. As oficinas de homem-banda já tiveram três
+            edições, sempre com duas metades: a teoria e os exercícios de dissociação, em que o corpo aprende a fazer coisas diferentes ao
+            mesmo tempo, e a mão na massa, em que cada participante corta, parafusa, amarra e testa o próprio mecanismo.
+          </span></p>
+          <p><span class="marca-texto">
+            Em 2025, a pesquisa deu um passo maior: <strong>Homem-Banda, a Formação</strong>, a primeira formação estruturada em
+            homem-banda e mulher-banda do mundo. Foi gratuita e híbrida, com oficineiros do Brasil, do Japão e da França, e terminou com uma
+            oficina maker de prototipagem no Lacarta Circo, em Vitória. Artistas capixabas com equipamentos parados voltaram a criar, e os
+            participantes começaram a articular o primeiro grupo associativo de homens e mulheres-banda do Brasil.
+          </span></p>
+          <div class="botoes mt-1">
+            <a class="botao" href="/obras/homem-banda-a-formacao">A Formação em detalhes →</a>
+            <a class="botao botao--contorno" href="https://www.instagram.com/reel/DSlDqCDgVaf/" target="_blank" rel="noopener">Reel da oficina ↗</a>
+            <a class="botao botao--contorno" href="https://www.instagram.com/osviajero/p/DQ4pmOpjrrU/" target="_blank" rel="noopener">Post no Instagram ↗</a>
+          </div>
+        </div>
+        <div class="numeros numeros--2">
+          <div class="numero"><strong>128</strong><span class="marca-texto">inscritos</span></div>
+          <div class="numero"><strong>4</strong><span class="marca-texto">países: Brasil, Itália, Austrália e EUA</span></div>
+          <div class="numero"><strong>17</strong><span class="marca-texto">videoaulas em 6 módulos</span></div>
+          <div class="numero"><strong>3</strong><span class="marca-texto">edições de oficinas mão na massa</span></div>
+        </div>
       </div>
-      <div class="numeros">
-        <div class="numero"><strong>128</strong><span class="marca-texto">inscritos</span></div>
-        <div class="numero"><strong>6</strong><span class="marca-texto">módulos</span></div>
-        <div class="numero"><strong>17</strong><span class="marca-texto">videoaulas</span></div>
-        <div class="numero"><strong>4</strong><span class="marca-texto">países</span></div>
+      <div class="mt-3"><Galeria fotos={oficinas} /></div>
+      <div class="grade grade-2 mt-2">
+        <Video video={{ titulo: '1ª Formação Internacional de Mulher e Homem-Banda: vídeo institucional', youtube: 'DVKS5urexK8' }} />
+        <Video video={{ titulo: 'TVE: "A arte do homem-banda vai ser ensinada em oficina"', youtube: 'sEXIPcku9gw' }} />
       </div>
     </div>
   </section>
@@ -145,7 +211,7 @@ const galeria = [
   <section class="secao secao--grafite gotas-ouro-sutil">
     <div class="container">
       <h2 class="titulo-secao"><span class="pilula pilula--ouro">Obras e formações</span></h2>
-      <div class="grade grade-4">
+      <div class="grade grade-3">
         {relacionados.map((o) => <CartaoObra obra={o} />)}
       </div>
     </div>
@@ -157,5 +223,7 @@ const galeria = [
   .conceito { border: 2px solid var(--ouro); border-radius: var(--raio); padding: 1.5rem; }
   .conceito h3 { color: var(--ouro); font-size: 1.3rem; }
   .conceito p { margin: 0; color: rgba(255,255,255,0.88); }
-  .foto { aspect-ratio: 4 / 3; }
+  .foto-alta { border-radius: var(--raio); }
+  .secao--preto a:not(.botao) { color: var(--ouro); }
+  .numeros--2 { grid-template-columns: repeat(2, 1fr); align-self: start; }
 </style>

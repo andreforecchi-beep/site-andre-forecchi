@@ -9,6 +9,23 @@ const numeros = [
   { valor: '2017', rotulo: 'ano da primeira sessão' },
 ];
 
+// Sessões no ES desde 2024 (sem nomes de projeto, a pedido de André). Fontes: _config/escolas_e_territorios.md e memória.
+// Confirmados: Serra 12 + 5, Aracruz 12 + 2 + 12. Linhares: aguardando confirmação de André antes de entrar.
+const territorios = [
+  {
+    cidade: 'Serra',
+    texto: '17 sessões. Doze em quatro escolas públicas (EMEF Rubem Alves, EMEF Centro de Jacaraípe, EMEF Leonel Brizola e EEEF Feu Rosa) e nas praças Encontro das Águas e de Castelândia, para mais de 900 pessoas, com mais de 30 curtas e janela de Libras em seis deles. Outras cinco em Manguinhos e no Balneário de Carapebus, com debate online ao lado do KurtaNaKombi.',
+  },
+  {
+    cidade: 'Aracruz',
+    texto: '26 sessões. Escolas municipais da cidade e do campo, incluindo a EMP Indígena Irajá; sessões noturnas nas aldeias Tupinikim de Pau Brasil, Novo Brasil e Caieiras Velha e no campo de futebol de Praia Formosa; e um festival com 12 sessões para 629 crianças em três EMEFs, em abril de 2026.',
+  },
+  {
+    cidade: 'Em andamento',
+    texto: 'Em 2026 e 2027, sessões com debate para estudantes do IFES Campus Aracruz e da EEEFM Misael Pinto Netto, com mediação sobre gênero e relações de poder.',
+  },
+];
+
 const locais = [
   { src: '/img/cine-bandolero/aldeia-braganca-munduruku-2019.webp', legenda: 'Aldeia Bragança, território Munduruku, Belterra, Pará (2019)' },
   { src: '/img/cine-bandolero/santo-amaro-lencois-2018.webp', legenda: 'Santo Amaro do Maranhão, Lençóis Maranhenses (2018)' },
@@ -77,11 +94,24 @@ const locais = [
   <section class="secao secao--branco">
     <div class="container estreito">
       <h2 class="titulo-secao"><span class="pilula">No Espírito Santo</span></h2>
-      <p>
-        Desde a volta ao Espírito Santo, a experiência acumulada em centenas de sessões passou a ser aplicada de forma continuada em
-        escolas e praças capixabas. Na Serra, o projeto <strong>Bandolerando</strong> (2024) fez 12 exibições em quatro escolas públicas e
-        na Praça Encontro das Águas, para mais de 900 pessoas, com curadoria de mais de 30 curtas e janela de Libras em seis obras.
+      <p class="lead">
+        A volta ao Espírito Santo não tirou o cineclube da estrada. A tela agora se abre de cidade em cidade dentro do estado, com
+        sessões planejadas junto com escolas, aldeias e lideranças comunitárias.
       </p>
+      <p>
+        Desde o fim de 2024, foram mais de 40 sessões em território capixaba. A maior parte acontece de dia, dentro das escolas públicas,
+        e termina em roda de conversa. À noite, a Djanira estaciona em praças, comunidades e aldeias para sessões abertas a quem chegar.
+      </p>
+    </div>
+    <div class="container territorios mt-2">
+      {territorios.map((t) => (
+        <article class="territorio">
+          <h3>{t.cidade}</h3>
+          <p>{t.texto}</p>
+        </article>
+      ))}
+    </div>
+    <div class="container">
       <h3 class="h3 mt-2">Temas da curadoria</h3>
       <ul class="etiquetas">{['Direitos humanos', 'Diversidade', 'Povos originários', 'Cinema nacional'].map((t) => <li>{t}</li>)}</ul>
     </div>
@@ -94,4 +124,8 @@ const locais = [
   .cb__num span { color: var(--branco); }
   .cb__foto { aspect-ratio: 4 / 3; }
   .h3 { font-size: 1.2rem; }
+  .territorios { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+  .territorio { border: 2px solid var(--preto); border-radius: var(--raio); padding: 1.25rem 1.4rem; background: var(--papel); }
+  .territorio h3 { font-size: 1.25rem; margin-bottom: 0.4rem; }
+  .territorio p { margin: 0; font-size: 0.96rem; }
 </style>

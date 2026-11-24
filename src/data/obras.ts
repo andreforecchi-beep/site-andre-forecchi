@@ -33,7 +33,7 @@ export type Video = {
   url?: string; // link externo (Globoplay, Drive...)
 };
 
-export type Imagem = { src: string; legenda?: string; credito?: string };
+export type Imagem = { src: string; legenda?: string; credito?: string; inteira?: boolean };
 
 export type Obra = {
   slug: string;
@@ -173,6 +173,35 @@ export const obras: Obra[] = [
     destaques: ['XXXI Festival Internacional de Inverno de Domingos Martins (julho de 2026)'],
     capa: { src: '/img/homem-banda/mphb-teaser-2026.webp', legenda: 'MPHB na CEEMTI Monsenhor Guilherme, Aracruz', credito: 'Bruno Cabús' },
     videos: [{ titulo: 'Teaser do show na CEEMTI Monsenhor Guilherme, Aracruz. Créditos: Bruno Cabús', youtube: 'JcRUNq6Z794' }],
+    galeria: [
+      { src: '/img/homem-banda/palco/festival-inverno-2026-3.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
+      { src: '/img/homem-banda/palco/festival-inverno-2026-2.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
+      { src: '/img/homem-banda/palco/festival-inverno-2026-4.webp', legenda: 'Festival de Inverno de Domingos Martins (2026)' },
+    ],
+  },
+  {
+    slug: 'corpoar',
+    titulo: 'Corpoar',
+    ano: '2026',
+    categoria: 'musica',
+    formato: 'EP instrumental de homem-banda',
+    autoria: 'Composição e interpretação de André Forecchi',
+    status: 'Em produção',
+    destaque: true,
+    resumo: 'Quatro faixas gravadas por um só músico tocando todos os instrumentos ao mesmo tempo, sem loop nem sobreposição.',
+    texto: [
+      'Corpoar é o EP de homem-banda de André Forecchi: quatro faixas autorais em que um único músico toca todos os instrumentos ao mesmo tempo. Não há loop, playback nem gravação em camadas. O que se ouve é o que o corpo consegue fazer de uma vez.',
+      'O repertório passeia pelo maxixe, pelo jazz, pelo baião e pela bossa-nova. Saxofone, bumbo, caixa, hi-hat, tamborins, prato, apito e sineta se dividem entre pés, mãos e boca. No saxofone, a técnica do slap tongue faz as vezes de caixa e, combinada com as notas, desenha a baixaria. No baião, o bumbo faz o grave da zabumba e o tamborim faz o bacalhau.',
+      'Os equipamentos foram construídos pelo próprio André. O disco nasce de uma preocupação concreta: a arte do homem-banda é rara no Brasil, e o loop e o playback diminuíram a procura pela dissociação de movimentos que ela exige.',
+    ],
+    ficha: [
+      ['Composição e interpretação', 'André Forecchi'],
+      ['Direção musical e arranjo percussivo', 'Gabriel Policarpo'],
+      ['Direção de homem-banda', 'Santiago Moreno'],
+      ['Acessibilidade', 'Priscila Muzy'],
+      ['Fomento', 'SECULT-ES, Edital 12/2025, Difusão Musical'],
+    ],
+    capa: { src: '/img/musica/corpoar-capa.webp', legenda: 'Capa do EP Corpoar', inteira: true },
   },
 
   // ---------------- AUDIOVISUAL ----------------
@@ -208,6 +237,7 @@ export const obras: Obra[] = [
       ['Personagens', 'André Forecchi e Davi Forecchi'],
       ['Acessibilidade', 'Filmes que Voam (legenda, audiodescrição e Libras)'],
     ],
+    videos: [{ titulo: 'Trailer oficial', youtube: 'tYiOCxyH3nQ' }],
     capa: { src: '/img/audiovisual/nos-de-nos-dois-frame-2.webp', legenda: 'Frame do filme' },
     galeria: [
       { src: '/img/audiovisual/nos-de-nos-dois-cartaz.webp', legenda: 'Cartaz' },
@@ -272,11 +302,20 @@ export const obras: Obra[] = [
     titulo: 'Me Leva ES',
     ano: '2023',
     categoria: 'audiovisual',
-    formato: 'Websérie',
+    formato: 'Websérie em 8 episódios',
     autoria: 'Coletivo OsViajero',
-    resumo: 'Websérie realizada no Espírito Santo.',
-    texto: ['Websérie realizada no Espírito Santo pelo Coletivo OsViajero.'],
-    videos: [{ titulo: 'Websérie completa', playlist: 'PLfJMwoDxiHtNGjLXsoplVtxEZO8NwA5OD' }],
+    resumo: 'Arte de rua interativa: o público decidiu nas redes sociais tudo o que os gêmeos iam apresentar.',
+    texto: [
+      'Na websérie OsViajero Me Leva, os gêmeos André e Davi entregaram ao público as rédeas da própria arte de rua. Tudo o que entrava nas apresentações foi decidido pelos seguidores nas redes sociais, e a dupla tinha de dar conta do que fosse escolhido, na rua, diante de quem passasse.',
+      'São seis episódios e dois de making of. Os títulos dão o tom da aventura: "Abertura dos trabalhos", "Arte no espetinho", "Botando a praça na roda", "Confia que o Buda abençoa", "O fracasso da Bocha" e "A Despedida".',
+      'A websérie foi realizada pelo OsViajero com recursos do Funcultura, aprovada nos Editais 2021 da SECULT-ES, e publicada no YouTube em dezembro de 2023.',
+    ],
+    ficha: [['Realização', 'Coletivo OsViajero (André e Davi Forecchi)'], ['Fomento', 'Funcultura, SECULT-ES (Editais 2021)']],
+    capa: { src: '/img/audiovisual/me-leva-es-ep1.webp', legenda: 'Episódio 01: Abertura dos trabalhos' },
+    videos: [
+      { titulo: 'Episódio 01: Abertura dos trabalhos', youtube: '0R_xq--fvWU' },
+      { titulo: 'Websérie completa (8 episódios)', playlist: 'PLfJMwoDxiHtNGjLXsoplVtxEZO8NwA5OD' },
+    ],
   },
   {
     slug: 'arte-da-casa',
@@ -319,27 +358,46 @@ export const obras: Obra[] = [
     texto: [
       'Primeira formação estruturada e sistematizada em homem-banda e mulher-banda já realizada, inédita no Brasil e no mundo. Oferecido gratuitamente em formato híbrido, o curso reuniu 128 inscritos de várias regiões do Brasil e de outros países: Itália, Austrália e Estados Unidos.',
       'Foram 6 módulos (5 online e 1 presencial) e 17 videoaulas, com legendas em português, janela de Libras e tradução automática para outros idiomas. O conteúdo passou por dissociação corporal, ritmo, concepção artística e construção de dispositivos mecânicos.',
-      'O módulo presencial foi uma oficina maker de prototipagem de equipamentos de homem-banda, no espaço Lacarta Circo, em Vitória, com participação de Marcos Vinicius Accioly (Inorama Mundo Maker). Ao final, foi disponibilizado um modelo simplificado em 3D de projeto de homem-banda.',
-      'A formação deu início à articulação do primeiro grupo associativo de homens e mulheres-banda do Brasil, serviu de referência teórica para uma pesquisa de mestrado e foi tema de matéria especial na TVE.',
+      'O módulo presencial, em 13 de dezembro de 2025, foi uma oficina maker de prototipagem de equipamentos no espaço Lacarta Circo, em Vitória, com Marcos Vinicius Accioly (Inorama Mundo Maker) e o homem-banda Welder Miranda. Quem não pôde ir participou de um encontro ao vivo online, e todos receberam um projeto simplificado de homem-banda em modelagem 3D para construir o próprio equipamento.',
+      'O efeito mais concreto apareceu depois do curso. Artistas capixabas que estavam com os equipamentos parados, como o Palhaço Didico e o Palhaço Alex, voltaram a desenvolver seus trabalhos, e outros, como Gabriel Bouez e o Palhaço Cachoeira, passaram a usar os exercícios da formação em cena. Os participantes começaram a articular o primeiro grupo associativo de homens e mulheres-banda do Brasil, e uma aluna venezuelana usou a formação como referência na sua pesquisa de mestrado.',
+      'Os participantes também pediram mais conteúdo maker, sobretudo um passo a passo de construção de equipamentos. É essa demanda que orienta a continuidade da pesquisa.',
     ],
     ficha: [
-      ['Idealização', 'André Forecchi'],
+      ['Idealização e coordenação', 'André Forecchi'],
       ['Oficineiros', 'André Forecchi e Welder Miranda (Brasil), Fumi Watanabe (Japão), Santiago Moreno (França/Argentina)'],
-      ['Fomento', 'Funcultura, Difusão Musical (Edital 2023)'],
+      ['Oficina maker', 'Marcos Vinicius Accioly (Inorama Mundo Maker)'],
+      ['Acessibilidade', 'Legendas em português, janela de Libras e tradução automática'],
+      ['Fomento', 'Funcultura, Edital de Difusão Musical (2023)'],
     ],
-    destaques: ['128 inscritos', '6 módulos', '17 videoaulas', '4 países'],
-    videos: [{ titulo: 'TVE Revista, 19/11/2025: matéria sobre a formação', youtube: 'pPo1mo3QeCE', inicio: 190 }],
+    destaques: ['128 inscritos', '6 módulos', '17 videoaulas', '4 países', 'Gratuita e híbrida'],
+    capa: { src: '/img/homem-banda/formacao/oficina-2.webp', legenda: 'Oficina de construção de equipamentos de homem-banda' },
+    videos: [
+      { titulo: '1ª Formação Internacional de Mulher e Homem-Banda: vídeo institucional', youtube: 'DVKS5urexK8' },
+      { titulo: 'TVE: "A arte do homem-banda vai ser ensinada em oficina"', youtube: 'sEXIPcku9gw' },
+      { titulo: 'TVE Revista, 19/11/2025: matéria sobre a formação', youtube: 'pPo1mo3QeCE', inicio: 190 },
+    ],
+    links: [
+      { rotulo: 'Postagem no Instagram', url: 'https://www.instagram.com/osviajero/p/DQ4pmOpjrrU/' },
+      { rotulo: 'Reel da oficina presencial', url: 'https://www.instagram.com/reel/DSlDqCDgVaf/' },
+    ],
   },
   {
     slug: 'dissociando-o-corpo',
     titulo: 'Dissociando o Corpo',
     ano: '',
     categoria: 'formacao',
-    formato: 'Oficina',
+    formato: 'Oficina (três edições)',
     autoria: 'André Forecchi',
-    resumo: 'Oficina de ritmo, dissociação corporal, cultura popular e cultura maker a partir da linguagem do homem-banda.',
+    resumo: 'Oficina de ritmo, dissociação corporal e construção de equipamentos a partir da linguagem do homem-banda.',
     texto: [
       'Oficina com eixos em cultura popular, ritmo, dissociação corporal, cultura maker e performance. Desenvolve coordenação motora, amplia a percepção rítmica, estimula a criatividade, apresenta a linguagem do homem-banda e oferece ferramentas pedagógicas para a educação musical e as artes do corpo.',
+      'Já são três edições. Cada uma junta duas metades: a teoria e os exercícios de dissociação, em que o corpo aprende a fazer coisas diferentes ao mesmo tempo, e a mão na massa, em que os participantes cortam, parafusam, amarram e testam os próprios mecanismos.',
+    ],
+    capa: { src: '/img/homem-banda/formacao/oficina-1.webp', legenda: 'Construção de equipamentos durante a oficina' },
+    galeria: [
+      { src: '/img/homem-banda/formacao/oficina-3.webp', legenda: '' },
+      { src: '/img/homem-banda/formacao/oficina-4.webp', legenda: '' },
+      { src: '/img/homem-banda/formacao/oficina-6.webp', legenda: '' },
     ],
     videos: [{ titulo: 'TVE Revista, 16/10/2024: entrevista ao vivo sobre a oficina', youtube: '5ik69boNQqY', inicio: 201 }],
   },

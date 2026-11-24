@@ -67,7 +67,7 @@ const meta = [
         <div class="grade grade-2">
           {[obra.capa, ...(obra.galeria ?? [])].filter(Boolean).map((g) => (
             <figure class="figura">
-              <img src={g!.src} alt={g!.legenda ?? obra.titulo} loading="lazy" class="obra__foto" />
+              <img src={g!.src} alt={g!.legenda || obra.titulo} loading="lazy" class="obra__foto" />
               {(g!.legenda || g!.credito) && (
                 <figcaption><span class="marca-texto">{g!.legenda}{g!.credito && `. Foto: ${g!.credito}`}</span></figcaption>
               )}

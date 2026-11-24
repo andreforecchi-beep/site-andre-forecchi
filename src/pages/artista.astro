@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import Cabecalho from '../components/Cabecalho.astro';
-import { atuacoes, idiomas, principios, premios } from '../data/artista';
+import { atuacoes, idiomas, principios, premios, artista } from '../data/artista';
 ---
 <Base titulo="O Artista" descricao="André Forecchi é artista multidisciplinar, natural de Aracruz (ES): homem-banda, ator, escritor, compositor, cineclubista e produtor cultural.">
   <Cabecalho
@@ -28,6 +28,11 @@ import { atuacoes, idiomas, principios, premios } from '../data/artista';
         <ul class="etiquetas">{atuacoes.map((a) => <li>{a}</li>)}</ul>
         <h2 class="h3 mt-2">Idiomas</h2>
         <ul class="etiquetas">{idiomas.map((a) => <li>{a}</li>)}</ul>
+        <h2 class="h3 mt-2">Nas redes</h2>
+        <div class="botoes">
+          <a class="botao" href={`https://www.instagram.com/${artista.instagram}/`} target="_blank" rel="noopener">@{artista.instagram} ↗</a>
+          <a class="botao botao--contorno" href={`https://www.instagram.com/${artista.instagramColetivo}/`} target="_blank" rel="noopener">@{artista.instagramColetivo} (coletivo) ↗</a>
+        </div>
       </div>
       <figure class="figura">
         <img src="/img/marca/andre-recorte.webp" alt="Retrato em preto e branco de André Forecchi, de chapéu, com o bumbo do homem-banda nas costas" width="1280" height="853" />

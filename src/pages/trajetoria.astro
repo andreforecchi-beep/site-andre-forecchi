@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Cabecalho from '../components/Cabecalho.astro';
 import Video from '../components/Video.astro';
+import Estrada from '../components/Estrada.astro';
 import { linhaDoTempo, paisesComAtuacao } from '../data/artista';
 ---
 <Base titulo="Trajetória" descricao="Seis anos de residência artística itinerante na Kombi Djanira: 50 mil km pela América Latina, 300 ações culturais gratuitas.">
@@ -91,6 +92,8 @@ import { linhaDoTempo, paisesComAtuacao } from '../data/artista';
       <p>Mais de 60 projetos realizados desde 2020 via Lei Aldir Blanc, Funcultura, PNAB, Lei Paulo Gustavo e SECULT-ES.</p>
     </div>
   </section>
+
+  <Estrada />
 </Base>
 
 <style>

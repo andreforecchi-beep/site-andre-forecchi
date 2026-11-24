@@ -1,0 +1,55 @@
+---
+// "A estrada continua": mostra, de forma sutil, que a vida segue itinerante.
+// As cidades vêm de src/data/artista.ts (estradaRecente e proximasParadas).
+import { estradaRecente, proximasParadas } from '../data/artista';
+interface Props { compacto?: boolean }
+const { compacto = false } = Astro.props;
+---
+<section class="secao secao--grafite gotas-ouro-sutil estrada">
+  <div class="container">
+    <span class="mao estrada__nota">a Djanira não estaciona</span>
+    <h2 class="titulo-secao"><span class="pilula pilula--ouro">A estrada continua</span></h2>
+    <p class="estrada__lead">
+      A vida na Kombi acabou em 2023. A estrada, não. De 2024 para cá, o trabalho passou por estas cidades do Espírito Santo:
+    </p>
+
+    <ol class="rota" aria-label="Cidades com trabalho realizado de 2024 a 2026">
+      {estradaRecente.map((p) => (
+        <li class="rota__parada" title={p.oque}>
+          <span class="rota__ponto" aria-hidden="true"></span>
+          <span class="rota__cidade">{p.cidade}</span>
+          {!compacto && <span class="rota__oque">{p.oque}</span>}
+        </li>
+      ))}
+    </ol>
+
+    <div class="proximas">
+      <span class="mao">próximas paradas</span>
+      <ul>
+        {proximasParadas.map((p) => <li><strong>{p.cidade}</strong>: {p.oque}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .estrada__nota { color: var(--ouro); display: block; margin-bottom: 0.3rem; transform: rotate(-2deg); transform-origin: left; }
+  .estrada__lead { max-width: 60ch; color: rgba(255,255,255,0.88); }
+  .rota {
+    list-style: none; padding: 1.5rem 0 0; margin: 0;
+    display: flex; flex-wrap: wrap; gap: 1.6rem 0;
+  }
+  .rota__parada {
+    position: relative; flex: 1 1 170px; padding: 1.4rem 1rem 0 0;
+    border-top: 3px dashed var(--ouro);
+  }
+  .rota__ponto {
+    position: absolute; top: -9px; left: 0; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--ouro); box-shadow: 0 0 0 4px var(--grafite);
+  }
+  .rota__cidade { display: block; font-weight: 800; font-size: 1.05rem; color: var(--branco); }
+  .rota__oque { display: block; font-size: 0.85rem; color: rgba(255,255,255,0.68); line-height: 1.4; margin-top: 0.2rem; }
+  .proximas { margin-top: 2.5rem; border-left: 3px solid var(--ouro); padding-left: 1rem; }
+  .proximas .mao { color: var(--ouro); }
+  .proximas ul { margin: 0.4rem 0 0; padding-left: 1.1rem; color: rgba(255,255,255,0.88); }
+</style>
